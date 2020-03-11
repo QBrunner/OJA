@@ -1,0 +1,12 @@
+@import "_settings.scss";
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  background: $background;
+  color: $primary;
+	margin: 0px;
+	@keyframes fadeContent{
+		from{opacity: 0;}
+		to{opacity: 1;}
+	}
+}
