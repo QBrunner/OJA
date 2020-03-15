@@ -10,25 +10,30 @@ const routes = [
     name: 'home',
     component: Home
   },
-	{
-		path: '/aktionen',
-		name: 'aktionen',
-		component: () => import('../views/Aktionen.vue')
+  {
+		path: '/kontakt',
+    name: 'kontakt',
+    component: () => import('../views/Kontakt.vue')
 	},
   {
     path: '/kalender',
     name: 'kalender',
     component: () => import('../views/Kalender.vue')
   },
+  {
+    path: '/podcasts',
+    name: 'podcasts',
+    component: () => import('../views/Podcasts.vue')
+  },
+  {
+		path: '/aktionen',
+		name: 'aktionen',
+		component: () => import('../views/Aktionen.vue')
+	},
 	{
 		path: '/aktionen/:name',
     name: 'aktionenName',
     component: () => import('../views/Gallery.vue')
-	},
-	{
-		path: '/kontakt',
-    name: 'kontakt',
-    component: () => import('../views/Kontakt.vue')
 	}
 ]
 

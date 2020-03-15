@@ -96,6 +96,9 @@
 		width: 100%;
 		.aktionen{
 			min-height: 0px;
+			.aktionenImage-Container:first-child{
+				margin-top: 20px;
+			}
 		}
 	}
 	@media only screen and (min-width: 768px) {

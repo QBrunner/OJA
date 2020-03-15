@@ -127,6 +127,9 @@
 				}
 			}
 		}
+    .aktionenImage-Container:first-child{
+      margin-top: 100px;
+    }
 		.aktionenImage-Container:nth-child(even){
 			.aktionenHeading{
 				right: -10px;
@@ -188,6 +191,9 @@
 					}
 				}
 			}
+      .aktionenImage-Container:first-child{
+        margin-top: 160px;
+      }
 			.aktionenImage-Container:nth-child(even){
 				margin-left: auto;
 				margin-right: 0px;

@@ -14,6 +14,7 @@
 				<span class="linkNaviWrapper" id="kalender"><a class="linkNavi" @click="$router.push({ name: 'kalender'}); toggleNavigation()">Kalender</a></span>
 			</div>
 			<div class="right">
+				<span class="linkNaviWrapper" id="podcasts"><a class="linkNavi" @click="$router.push({ name: 'podcasts'}); toggleNavigation()">Podcasts</a></span>
 				<span class="linkNaviWrapper" id="kontakt"><a class="linkNavi" @click="$router.push({ name: 'kontakt'}); toggleNavigation()">Kontakt</a></span>
 			</div>
 		</div>

@@ -24,7 +24,7 @@
 
 <style lang="scss">
 	.page-content {
-		margin-top: 70px;
+		margin-top: 80px;
 		width: 100%;
 		.fading{
 			animation: fadeContent;
