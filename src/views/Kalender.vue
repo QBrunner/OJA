@@ -321,8 +321,15 @@
 				margin: 40px auto 0px auto;
 				.event{
 					position: relative;
-					border-bottom: 2px solid #e3001b;
+					transition: 0.5s ease;
+					padding: 20px 10px;
+					border: 2px solid black;
+					border-radius: 7px;
+					box-shadow: 5px 10px 20px black;
 					margin: 20px 0px;
+					animation-name: contactFadeIn;
+					animation-duration: 1s;
+					cursor: pointer;
 					.eventSection{
 						width: 100%;
 						display: inline-block;
@@ -333,7 +340,6 @@
 						.eventTitle{
 							font-size: 5vw;
 							margin-left: 10px;
-							cursor: pointer;
 							.eventArrow{
 								position: absolute;
 								margin-left: 5px;
@@ -349,8 +355,12 @@
 						}
 					}
 				}
-				.event:last-child{
-					border-bottom: none;
+				.event:hover{
+					scale: 1.02;
+				}
+				@keyframes contactFadeIn {
+					0%{ opacity: 0;}
+					100%{ opacity: 1;}
 				}
 			}
 	}
