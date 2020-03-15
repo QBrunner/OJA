@@ -4,6 +4,7 @@
 			<img class="arrowBottom" id="arrowBottom" src="@/assets/Icons/Pfeil_nach_unten.svg">
 		</div>
 		<div class="content">
+			<kalender />
 			<aktionen />
 		</div>
 	</div>
@@ -11,11 +12,13 @@
 
 <script>
 	import aktionen from '../views/Aktionen.vue'
+	import kalender from '../views/Kalender.vue'
 
 	export default {
 		name: 'Home',
 		components: {
-			aktionen
+			aktionen,
+			kalender
 		},
 		data() {
 			return {
@@ -58,14 +61,29 @@
 			},
 			toggleNaviActive: function(){
 				let elem = document.getElementById('aktionen')
-				if(window.pageYOffset > 0){
+				let kelem = document.getElementById('kalender')
+				if(window.pageYOffset > document.getElementsByClassName('kalender')[0].getBoundingClientRect().bottom){
 					if(!elem.classList.contains('active')){
+						elem.classList.toggle('active')
+					}
+					if(kelem.classList.contains('active')){
+						kelem.classList.toggle('active')
+					}
+				}
+				else if(window.pageYOffset > 0){
+					if(!kelem.classList.contains('active')){
+						kelem.classList.toggle('active')
+					}
+					if(elem.classList.contains('active')){
 						elem.classList.toggle('active')
 					}
 				}
 				else{
 					if(elem.classList.contains('active')){
 						elem.classList.toggle('active')
+					}
+					if(kelem.classList.contains('active')){
+						kelem.classList.toggle('active')
 					}
 				}
 			}

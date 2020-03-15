@@ -16,9 +16,18 @@
 					<div class="bodyDay" v-for="(col, id2) in row" :key="'day' + id2" @click="select(col.num, col.curMonth)"
 					:class="[col.curMonth == month ? 'bodyDayCurrentMonth' : '', (currentDate.getFullYear() == year &&
 					currentDate.getMonth() == month && currentDate.getDate() == col.num) ? 'bodyDayToday' : '',
-					(daySelected.getFullYear() == col.curYear && daySelected.getMonth() == col.curMonth && daySelected.getDate() == col.num) ? 'bodyDaySelected' : '']">
+					(daySelected.getFullYear() == col.curYear && daySelected.getMonth() == col.curMonth && daySelected.getDate() == col.num) ? 'bodyDaySelected' : '',
+					(currentEvents[id1][id2].year != -1) ? 'bodyDayEvent' : '']">
 						{{ col.num }}
 					</div>
+				</div>
+			</div>
+		</div>
+		<div class="eventWrapper">
+			<div class="event" v-for="(event, index) in shownEvents" :key="'event-' + index">
+				<div class="eventSection">
+					<h2 class="eventHeading">{{event.day}}. {{months[event.month]}} {{event.year}}</h2>
+					<h3 class="eventTitle">{{event.title}} <span class="eventArrow">&rarr;</span></h3>
 				</div>
 			</div>
 		</div>
@@ -42,8 +51,14 @@
 				visualMonth: [],
 				days: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
 				months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-				events: [],
-				currentEvents: []
+				events: [{year: 2020, month: 2, day: 22, title: 'Birthday', link: 'asdf'},
+				{year: 2020, month: 2, day: 31, title: 'End of the Month', link: 'asdf'},
+				{year: 2020, month: 2, day: 31, title: 'End', link: 'asdf'},
+				{year: 2019, month: 11, day: 31, title: 'End of the Month', link: 'asdf'},
+				{year: 2020, month: 2, day: 2, title: 'End of the Month', link: 'asdf'}],
+				currentEvents: [],
+				shownEvents: [],
+				showAll: true,
 			}
 		},
 		methods: {
@@ -54,6 +69,8 @@
 				this.month = this.date.getMonth()
 				this.daySelected = new Date(this.year, this.month, this.date.getDate())
 				this.calculateMonths()
+				this.showAll = true;
+				this.calculateShownEvents()
 			},
 			calculateMonths: function() {
 				let visualMonth = []
@@ -75,7 +92,6 @@
 				let numDays = new Date(nextYear, nextMonth, 0).getDate() //number of days of this month
 
 				let numDaysPriorMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate() //number of days of prior month
-
 				for(let i = 0; i < firstOfMonth; i++){
 					visualMonth.push({num: (numDaysPriorMonth + 1 - (firstOfMonth - i)), curMonth: pastMonth, curYear: pastYear})
 				}
@@ -93,14 +109,27 @@
 				}
 
 				this.visualMonth = [[]]
+				this.currentEvents = [[]]
 				let visualMonthLength = visualMonth.length / 7
 				for(let i = 0; i < visualMonthLength; i++){
 					let tmp = []
+					let tmpEvent = []
 					for(let j = 0; j < 7; j++){
 						tmp.push(visualMonth[i * 7 + j])
+						tmpEvent.push({year: -1, month: 0, day: 0})
+						for(let k = 0; k < this.events.length; k++){
+							if(visualMonth[i * 7 + j].num == this.events[k].day &&
+							visualMonth[i * 7 + j].curMonth == this.events[k].month &&
+							visualMonth[i * 7 + j].curYear == this.events[k].year){
+								tmpEvent[j] = (this.events[k])
+							}
+						}
 					}
 					this.visualMonth.push(tmp)
+					this.currentEvents.push(tmpEvent)
 				}
+
+				this.currentEvents = this.currentEvents.slice(1, this.currentEvents.length)
 				this.visualMonth = this.visualMonth.slice(1, this.visualMonth.length);
 			},
 			previous: function() {
@@ -113,6 +142,8 @@
 				this.year = this.date.getFullYear()
 				this.month = this.date.getMonth()
 				this.calculateMonths()
+				this.showAll = true;
+				this.calculateShownEvents()
 			},
 			next: function() {
 				if(this.month == 11){
@@ -124,6 +155,27 @@
 				this.year = this.date.getFullYear()
 				this.month = this.date.getMonth()
 				this.calculateMonths()
+				this.showAll = true;
+				this.calculateShownEvents()
+			},
+			calculateShownEvents: function(day){
+				if(this.showAll){
+					this.shownEvents = []
+					for(let i = 0; i < this.events.length; i++){
+							if(this.events[i].year == this.year && this.events[i].month == this.month){
+								this.shownEvents.push(this.events[i])
+							}
+					}
+					this.shownEvents.sort((a, b) => parseFloat(a.day) - parseFloat(b.day));
+				}
+				else{
+					this.shownEvents = []
+					for(let i = 0; i < this.events.length; i++){
+							if(this.events[i].month == this.daySelected.getMonth() && this.events[i].day == day){
+								this.shownEvents.push(this.events[i])
+							}
+					}
+				}
 			},
 			select: function(day, curMonth){
 				let year = this.date.getFullYear()
@@ -139,6 +191,8 @@
 					}
 				}
 				this.daySelected = new Date(year, curMonth, day)
+				this.showAll = false
+				this.calculateShownEvents(day, month)
 			}
 		},
 		created() {
@@ -196,13 +250,15 @@
 					display: inline-block;
 					width: 40px;
 					height: 40px;
+					line-height: 40px;
 					text-align: center;
 				}
 				.bodyDay {
 					color: $primary-dark;
-					line-height: 50px;
+					line-height: 40px;
 					text-align: center;
 					cursor: pointer;
+					position: relative;
 				}
 				.bodyDayCurrentMonth {
 					color: $primary;
@@ -212,10 +268,38 @@
 					color: #e3001b;
 				}
 				.bodyDaySelected {
-					background-color: #e3001b;
-					box-shadow: 0 5px 10px -5px rgba(0, 0, 0, .75);
+					//background-color: #e3001b;
+					//box-shadow: 0 5px 10px -5px rgba(0, 0, 0, .75);
+					z-index: 1;
+					//border-radius: 50%;
+					color: yellow;
+				}
+				.bodyDaySelected:before{
+					content: '';
+					width: 40px;
+					height: 40px;
+					line-height: 40px;
+					position: absolute;
+					z-index: 0;
+					left: 50%;
+					top: 50%;
 					border-radius: 50%;
-					color: #111;
+					border: 2px solid #e3001b;
+					transform: translate(-50%, -50%)
+				}
+				.bodyDayEvent:after{
+					transition: 0.2s $easeInOutBack;
+					content: '';
+					width: 2px;
+					background-color: yellow;
+					height: 50%;
+					position: absolute;
+					right: 0px;
+					top: 50%;
+					transform: translateY(-50%)
+				}
+				.bodyDayEvent:hover:after{
+					width: 5px;
 				}
 				.calendarHead {
 					line-height: 50px;
@@ -232,6 +316,43 @@
 					}
 				}
 			}
+			.eventWrapper{
+				width: 280px;
+				margin: 40px auto 0px auto;
+				.event{
+					position: relative;
+					border-bottom: 2px solid #e3001b;
+					margin: 20px 0px;
+					.eventSection{
+						width: 100%;
+						display: inline-block;
+						.eventHeading{
+							font-size: 5.5vw;
+							text-decoration: underline;
+						}
+						.eventTitle{
+							font-size: 5vw;
+							margin-left: 10px;
+							cursor: pointer;
+							.eventArrow{
+								position: absolute;
+								margin-left: 5px;
+								transition: 0.5s ease;
+								transform: translateX(0px);
+							}
+						}
+						.eventTitle:hover{
+							.eventArrow{
+								transition: 0.5s $easeInOutBack;
+								transform: translateX(10px);
+							}
+						}
+					}
+				}
+				.event:last-child{
+					border-bottom: none;
+				}
+			}
 	}
 	@media only screen and (min-width: 460px){
 		.kalender{
@@ -242,7 +363,30 @@
 					display: inline-block;
 					width: 50px;
 					height: 50px;
+					line-height: 50px;
 					text-align: center;
+				}
+			}
+			.eventWrapper{
+				width: 350px;
+				margin: 40px auto 0px auto;
+				.event{
+					.eventIndex{
+						h3{
+							position: absolute;
+							top: 0;
+							font-size: 30px;
+						}
+					}
+					.eventSection{
+						.eventHeading{
+							font-size: 30px;
+							text-decoration: underline;
+						}
+						.eventTitle{
+							font-size: 26px;
+						}
+					}
 				}
 			}
 		}
@@ -250,6 +394,64 @@
 	@media only screen and (min-width: 768px) {
 			.kalender {
 					min-height: calc(100vh - 194px);
+					.calendarWrapper{
+						width: 490px;
+						.bodyWeek,
+						.calendarHead {
+							display: block;
+							height: 70px;
+							width: 100%;
+						}
+						.headDay,
+						.bodyDay {
+							display: inline-block;
+							width: 70px;
+							height: 70px;
+							line-height: 70px;
+							text-align: center;
+						}
+						.headDay{
+							line-height: 50px;
+						}
+					}
+					.eventWrapper{
+						width: 490px;
+					}
+			}
+	}
+	@media only screen and (min-width: 992px) {
+			.kalender {
+					min-height: calc(100vh - 194px);
+					.calendarWrapper{
+						width: 770px;
+						.bodyWeek,
+						.calendarHead {
+							display: block;
+							height: 70px;
+							width: 100%;
+						}
+						.headDay,
+						.bodyDay {
+							display: inline-block;
+							width: 110px;
+							height: 70px;
+							line-height: 70px;
+							text-align: center;
+							font-size: 1.7em;
+						}
+						.headDay{
+							line-height: 50px;
+						}
+						.bodyDaySelected:before{
+							content: '';
+							width: 70px;
+							height: 70px;
+							line-height: 70px;
+						}
+					}
+					.eventWrapper{
+						width: 770px;
+					}
 			}
 	}
 </style>
