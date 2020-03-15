@@ -118,6 +118,10 @@
 				margin-top: 20px;
 			}
 		}
+		.kalender{
+			min-height: 0px;
+			margin-bottom: 110px;
+		}
 	}
 	@media only screen and (min-width: 768px) {
 		.landing {
