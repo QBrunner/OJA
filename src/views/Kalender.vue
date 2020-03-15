@@ -288,7 +288,7 @@
 					transform: translate(-50%, -50%)
 				}
 				.bodyDayEvent:after{
-					transition: 0.2s $easeInOutBack;
+					transition: 0.3s ease;
 					content: '';
 					width: 2px;
 					background-color: yellow;
@@ -299,7 +299,7 @@
 					transform: translateY(-50%)
 				}
 				.bodyDayEvent:hover:after{
-					width: 5px;
+					width: 7px;
 				}
 				.calendarHead {
 					line-height: 50px;
