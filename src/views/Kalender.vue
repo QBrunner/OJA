@@ -36,16 +36,14 @@
 			return {
 				year: 0, //specified year (current year for start)
 				month: 0, //current month (current month for start)
-				numWeeks: 0,
-				day: 0, //current day
 				daySelected: 0, //the selected day. Used for showing an event
 				currentDate: {},
 				date: {},
-				previousDate: {},
-				nextDate: {},
 				visualMonth: [],
 				days: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
-				months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+				months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+				events: [],
+				currentEvents: []
 			}
 		},
 		methods: {
@@ -54,45 +52,30 @@
 				this.currentDate = new Date()
 				this.year = this.date.getFullYear()
 				this.month = this.date.getMonth()
-				this.day = this.date.getDate() - 1
-				this.daySelected = new Date(this.year, this.month, this.day + 1)
-
-				if(this.month == 0){
-					this.previousDate = new Date(this.year - 1, 11)
-				}
-				else{
-					this.previousDate = new Date(this.year, this.month -1)
-				}
-
-				if(this.month == 11){
-					this.nextDate = new Date(this.year + 1, 0)
-				}
-				else{
-					this.nextDate = new Date(this.year, this.month + 1)
-				}
+				this.daySelected = new Date(this.year, this.month, this.date.getDate())
 				this.calculateMonths()
 			},
 			calculateMonths: function() {
+				let visualMonth = []
 				let firstOfMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 1).getDay()
 				firstOfMonth += 6
 				firstOfMonth %= 7 //starting weekday of month
-				let month = this.date.getMonth() + 1
-				let year = this.date.getFullYear()
-				if(month == 12){
-					year++
-					month = 0
+				let nextMonth = this.date.getMonth() + 1
+				let nextYear = this.date.getFullYear()
+				if(nextMonth == 12){
+					nextYear++
+					nextMonth = 0
 				}
-				let numDays = new Date(year, month, 0).getDate() //number of days of this month
-				this.numWeeks = Math.ceil((firstOfMonth + numDays) / 7)//number of weeks in current month
-
-				let numDaysPriorMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate() //number of days of prior month
-				let visualMonth = []
 				let pastMonth = this.date.getMonth() - 1
-				let pastYear = this.date.getYear()
+				let pastYear = this.date.getFullYear()
 				if(pastMonth == -1){
 					pastMonth = 11
 					pastYear--
 				}
+				let numDays = new Date(nextYear, nextMonth, 0).getDate() //number of days of this month
+
+				let numDaysPriorMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate() //number of days of prior month
+
 				for(let i = 0; i < firstOfMonth; i++){
 					visualMonth.push({num: (numDaysPriorMonth + 1 - (firstOfMonth - i)), curMonth: pastMonth, curYear: pastYear})
 				}
@@ -106,7 +89,7 @@
 					length = 0
 				}
 				for(let i = 0; i < length; i++){
-					visualMonth.push({num: (i +1), curMonth: month, curYear: year})
+					visualMonth.push({num: (i +1), curMonth: nextMonth, curYear: nextYear})
 				}
 
 				this.visualMonth = [[]]
@@ -129,7 +112,6 @@
 				}
 				this.year = this.date.getFullYear()
 				this.month = this.date.getMonth()
-				this.day = this.date.getDate() - 1
 				this.calculateMonths()
 			},
 			next: function() {
@@ -141,7 +123,6 @@
 				}
 				this.year = this.date.getFullYear()
 				this.month = this.date.getMonth()
-				this.day = this.date.getDate() - 1
 				this.calculateMonths()
 			},
 			select: function(day, curMonth){
@@ -171,7 +152,7 @@
 			min-height: calc(100vh - 164px);
 			margin: 0 30px;
 			.calendarWrapper{
-				width: 350px;
+				width: 280px;
 				margin: 50px auto 0;
 				.calendarMonth{
 					font-size: 20px;
@@ -208,13 +189,13 @@
 				.calendarHead {
 					display: block;
 					height: 50px;
-					width: 350px;
+					width: 100%;
 				}
 				.headDay,
 				.bodyDay {
 					display: inline-block;
-					width: 50px;
-					height: 50px;
+					width: 40px;
+					height: 40px;
 					text-align: center;
 				}
 				.bodyDay {
@@ -251,6 +232,20 @@
 					}
 				}
 			}
+	}
+	@media only screen and (min-width: 460px){
+		.kalender{
+			.calendarWrapper{
+				width: 350px;
+				.headDay,
+				.bodyDay {
+					display: inline-block;
+					width: 50px;
+					height: 50px;
+					text-align: center;
+				}
+			}
+		}
 	}
 	@media only screen and (min-width: 768px) {
 			.kalender {
