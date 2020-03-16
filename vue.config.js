@@ -6,5 +6,6 @@ module.exports = {
 				prependData: `@import "@/styles/style.scss";`
 			}
 		}
-	}
+	},
+	outputDir: "docs"
 };
