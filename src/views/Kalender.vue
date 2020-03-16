@@ -207,7 +207,7 @@
 			margin: 0 30px;
 			.calendarWrapper{
 				width: 280px;
-				margin: 50px auto 0;
+				margin: 110px auto 0;
 				.calendarMonth{
 					font-size: 20px;
 					font-weight: 800;
@@ -366,6 +366,15 @@
 		.kalender{
 			.calendarWrapper{
 				width: 350px;
+				.calendarMonth{
+					font-size: 30px;
+					line-height: 30px;
+					.monthPrevious,
+					.monthNext {
+						width: 30px;
+						height: 30px;
+					}
+				}
 				.headDay,
 				.bodyDay {
 					display: inline-block;
@@ -404,6 +413,7 @@
 					min-height: calc(100vh - 194px);
 					.calendarWrapper{
 						width: 490px;
+						margin: 120px auto 0;
 						.bodyWeek,
 						.calendarHead {
 							display: block;
@@ -432,6 +442,15 @@
 					min-height: calc(100vh - 194px);
 					.calendarWrapper{
 						width: 770px;
+						.calendarMonth{
+							font-size: 40px;
+							line-height: 40px;
+							.monthPrevious,
+							.monthNext {
+								width: 40px;
+								height: 40px;
+							}
+						}
 						.bodyWeek,
 						.calendarHead {
 							display: block;
