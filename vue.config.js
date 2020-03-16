@@ -1,5 +1,5 @@
 module.exports = {
-	publicPath: '/',
+	publicPath: '/oja',
 	css: {
 		loaderOptions: {
 			sass: {
