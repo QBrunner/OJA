@@ -270,7 +270,6 @@
 				.bodyDaySelected {
 					//background-color: #e3001b;
 					//box-shadow: 0 5px 10px -5px rgba(0, 0, 0, .75);
-					z-index: 1;
 					//border-radius: 50%;
 					color: yellow;
 				}
@@ -280,7 +279,6 @@
 					height: 40px;
 					line-height: 40px;
 					position: absolute;
-					z-index: 0;
 					left: 50%;
 					top: 50%;
 					border-radius: 50%;

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="landing" id="landing">
+		<div class="landing" id="landing" v-if="showLanding">
 			<img class="arrowBottom" id="arrowBottom" src="@/assets/Icons/Pfeil_nach_unten.svg">
 		</div>
 		<div class="content">
@@ -22,7 +22,8 @@
 		},
 		data() {
 			return {
-				id: 0
+				id: 0,
+				showLanding: true
 			}
 		},
 		methods: {
@@ -35,12 +36,19 @@
 			resizeLogo: function() {
 				let elem = document.getElementById('logo')
 				if (elem) {
-					if (window.pageYOffset <= (window.innerHeight - 60) * 0.4) {
+					if (window.pageYOffset <= (window.innerHeight - 60) * 0.4 && window.innerHeight > 400) {
 						elem.style.top = 0.4 * window.innerHeight - window.pageYOffset + 'px'
 						elem.style.transform = 'translate(-50%, 0%) scale(' + (0.0114 * window.innerWidth + 3.2) * ((1/(0.0114 * window.innerWidth  + 3.2)) + (0.4 * (window.innerHeight - 60) - window.pageYOffset) / (window.innerHeight - 60)) + ')'
+						this.showLanding = true;
 					} else {
 						elem.style.transform = 'scale(1) translate(-50%, 50%)'
 						elem.style.top = 0 + 'px'
+						if(window.innerHeight <= 400){
+							this.showLanding = false
+						}
+						else{
+							this.showLanding = true
+						}
 					}
 				}
 			},
