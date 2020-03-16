@@ -25,9 +25,10 @@
 		</div>
 		<div class="eventWrapper">
 			<div class="event" v-for="(event, index) in shownEvents" :key="'event-' + index">
+				<img class="eventArrow" src="@/assets/Icons/Pfeil_nach_rechts.svg">
 				<div class="eventSection">
 					<h2 class="eventHeading">{{event.day}}. {{months[event.month]}} {{event.year}}</h2>
-					<h3 class="eventTitle">{{event.title}} <span class="eventArrow">&rarr;</span></h3>
+					<h3 class="eventTitle">{{event.title}}</h3>
 				</div>
 			</div>
 		</div>
@@ -54,7 +55,7 @@
 				events: [{year: 2020, month: 2, day: 22, title: 'Birthday', link: 'asdf'},
 				{year: 2020, month: 2, day: 31, title: 'End of the Month', link: 'asdf'},
 				{year: 2020, month: 2, day: 31, title: 'End', link: 'asdf'},
-				{year: 2019, month: 11, day: 31, title: 'End of the Month', link: 'asdf'},
+				{year: 2019, month: 8, day: 31, title: 'End of the Month', link: 'asdf'},
 				{year: 2020, month: 2, day: 2, title: 'End of the Month', link: 'asdf'}],
 				currentEvents: [],
 				shownEvents: [],
@@ -329,7 +330,7 @@
 					animation-duration: 1s;
 					cursor: pointer;
 					.eventSection{
-						width: 100%;
+						width: 85%;
 						display: inline-block;
 						.eventHeading{
 							font-size: 5.5vw;
@@ -338,23 +339,22 @@
 						.eventTitle{
 							font-size: 5vw;
 							margin-left: 10px;
-							.eventArrow{
-								position: absolute;
-								margin-left: 5px;
-								transition: 0.5s ease;
-								transform: translateX(0px);
-							}
 						}
-						.eventTitle:hover{
-							.eventArrow{
-								transition: 0.5s $easeInOutBack;
-								transform: translateX(10px);
-							}
-						}
+					}
+					.eventArrow{
+						position: absolute;
+						right: 15px;
+						top: 50%;
+						transform: translateY(-50%);
+						transition: 0.5s ease;
 					}
 				}
 				.event:hover{
 					scale: 1.02;
+					.eventArrow{
+						transition: 0.5s $easeInOutBack;
+						transform: translate(5px, -50%);
+					}
 				}
 				@keyframes contactFadeIn {
 					0%{ opacity: 0;}
