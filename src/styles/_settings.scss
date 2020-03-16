@@ -1,7 +1,15 @@
 $primary: #ffffff;
 $primary-dark: darken($primary, 40%);
 $background: #131416;
-$background-light: lighten($background, 5%);
+$background-light: #e1001a;
+
+
+//white theme
+/*$primary: black;
+$primary-dark: lighten($primary, 40%);
+$background: #bababa;
+$background-light: white;//lighten($background, 5%);*/
+
 
 
 $linear: cubic-bezier(0.25, 0.25, 0.75, 0.75);

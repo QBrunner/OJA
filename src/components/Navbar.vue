@@ -103,6 +103,7 @@
 			position: absolute;
 			top: 0;
 			height: 80px;
+			box-shadow: 0px 0px 50px black;
 			.menu-icon{
 				margin-top: 25px;
 				cursor: pointer;

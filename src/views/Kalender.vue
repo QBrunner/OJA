@@ -223,7 +223,7 @@
 						width: 30px;
 						height: 30px;
 						text-align: center;
-
+						transition: 0.5s ease;
 						&:hover {
 							background-color: #e3001b;
 							box-shadow: 0 5px 5px -5px rgba(0,0,0,0.75);
