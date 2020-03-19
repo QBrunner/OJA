@@ -6,7 +6,7 @@
 
 <style lang="scss">
   .podcasts{
-    min-height: calc(100vh - 164px);
+    min-height: calc(100vh - 174px);
     margin: 0px;
   }
   @media only screen and (min-width: 768px) {

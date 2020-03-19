@@ -2,15 +2,29 @@
 	<div class="footer row no-gutters">
 		<div class="col"></div>
 		<div class="right col-auto">
-			<span class="link">Impressum</span>
-			<span class="link">Datenschutz</span>
+			<span class="link" id="impressum" @click="$router.push({ name: 'impressum'}).catch(err => {});">Impressum</span>
+			<span class="link" id="datenschutz" @click="$router.push({ name: 'datenschutz'}).catch(err => {});">Datenschutz</span>
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
-  name: 'Navbar',
+  name: 'footerComponent',
+	watch: {
+		'$route'(to) {
+			let elem = document.getElementById(to.name)
+			let list = document.getElementsByClassName('link')
+			for(let it = 0; it < list.length; it++){
+				if(list[it].classList.contains('active')){
+					list[it].classList.toggle('active')
+				}
+			}
+			if(elem){
+				elem.classList.toggle('active')
+			}
+		}
+	},
 }
 </script>
 
@@ -24,6 +38,7 @@ export default {
 		.link{
 			position: relative;
 			color: $primary;
+			cursor: pointer;
 		}
 		.link:before{
 			content: "";
@@ -38,6 +53,10 @@ export default {
 			transition: .25s linear;
 		}
 		.link:hover:before, .link:focus:before{
+			visibility: visible;
+			transform: scaleX(1);
+		}
+		.active:before{
 			visibility: visible;
 			transform: scaleX(1);
 		}

@@ -49,6 +49,16 @@ const routes = [
 		path: '/kontakt',
     name: 'kontakt',
     component: () => import('../views/Kontakt.vue')
+	},
+  {
+		path: '/datenschutz',
+    name: 'datenschutz',
+    component: () => import('../views/Datenschutz.vue')
+	},
+  {
+		path: '/impressum',
+    name: 'impressum',
+    component: () => import('../views/Impressum.vue')
 	}
 ]
 

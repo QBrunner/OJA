@@ -10,17 +10,17 @@
 		<div class="navigation" id="navigation">
 			<div class="left">
 				<span class="close-button" @click="toggleNavigation">&times;</span>
-				<span class="linkNaviWrapper" id="news"><a class="linkNavi" @click="$router.push({ name: 'news'}); toggleNavigation()">News</a></span>
-				<span class="linkNaviWrapper" id="termine"><a class="linkNavi" @click="$router.push({ name: 'termine'}); toggleNavigation()">Termine</a></span>
-				<span class="linkNaviWrapper" id="mehrvonuns"><a class="linkNavi" @click="$router.push({ name: 'mehrvonuns'}); toggleNavigation()">Mehr von Uns</a></span>
+				<span class="linkNaviWrapper" id="news"><a class="linkNavi" @click="$router.push({ name: 'news'}).catch(err => {}); toggleNavigation()">News</a></span>
+				<span class="linkNaviWrapper" id="termine"><a class="linkNavi" @click="$router.push({ name: 'termine'}).catch(err => {}); toggleNavigation()">Termine</a></span>
+				<span class="linkNaviWrapper" id="mehrvonuns"><a class="linkNavi" @click="$router.push({ name: 'mehrvonuns'}).catch(err => {}); toggleNavigation()">Mehr von Uns</a></span>
 			</div>
 			<div class="right">
-				<span class="linkNaviWrapper" id="podcasts"><a class="linkNavi" @click="$router.push({ name: 'podcasts'}); toggleNavigation()">Podcasts</a></span>
+				<span class="linkNaviWrapper" id="podcasts"><a class="linkNavi" @click="$router.push({ name: 'podcasts'}).catch(err => {}); toggleNavigation()">Podcasts</a></span>
 				<!--<span class="linkNaviWrapper" id="mitmachen"><a class="linkNavi" @click="$router.push({ name: 'mitmachen'}); toggleNavigation()">Mitmachen</a></span>-->
-				<span class="linkNaviWrapper" id="kontakt"><a class="linkNavi" @click="$router.push({ name: 'kontakt'}); toggleNavigation()">Kontakt</a></span>
+				<span class="linkNaviWrapper" id="kontakt"><a class="linkNavi" @click="$router.push({ name: 'kontakt'}).catch(err => {}); toggleNavigation()">Kontakt</a></span>
 			</div>
 		</div>
-		<div class="logo" id="logo" :style="[logoBackground ? {'z-index': 0} : {'z-index': 2}]"  @click="$router.push({ name: 'home'})">
+		<div class="logo" id="logo" :style="[logoBackground ? {'z-index': 0} : {'z-index': 2}]"  @click="$router.push({ name: 'home'}).catch(err => {})">
 			<img src="@/assets/testing/mainPageWhite.png">
 		</div>
 	</div>
@@ -69,7 +69,7 @@
 						list[it].classList.toggle('active')
 					}
 				}
-				if(to.name != 'home'){
+				if(to.name != 'home' && to.name != 'impressum' && to.name != 'datenschutz'){
 					elem.classList.toggle('active')
 				}
 			}

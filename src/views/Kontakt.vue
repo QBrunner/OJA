@@ -35,7 +35,7 @@
 
 <style lang="scss">
 	.kontakt{
-		min-height: calc(100vh - 164px);
+		min-height: calc(100vh - 174px);
 		.kontaktHeadingContainer{
 			margin-left: 10px;
 			margin-right: 10px;

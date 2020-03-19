@@ -73,7 +73,7 @@
 
 <style lang="scss">
 	.news{
-		min-height: calc(100vh - 164px);
+		min-height: calc(100vh - 174px);
 		margin: 0px 30px;
 		animation: fadeContent;
 		animation-duration: 1s;

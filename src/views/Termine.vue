@@ -224,7 +224,7 @@
 
 <style lang="scss">
 	.termine {
-			min-height: calc(100vh - 164px);
+			min-height: calc(100vh - 174px);
 			margin: 0 30px;
 			.calendarWrapper{
 				width: 280px;

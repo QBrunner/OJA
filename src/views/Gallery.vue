@@ -74,7 +74,7 @@
 
 <style lang="scss">
 	.gallery{
-		min-height: calc(100vh - 164px);
+		min-height: calc(100vh - 174px);
 		.galleryNameHeadingContainer{
 			margin-left: 10px;
 			margin-right: 10px;
