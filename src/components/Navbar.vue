@@ -57,6 +57,9 @@
 				if(to.name === 'newsName'){
 					elem = document.getElementById('news')
 				}
+				else if(to.name === 'termineName'){
+					elem = document.getElementById('termine')
+				}
 				else{
 					elem = document.getElementById(to.name)
 				}

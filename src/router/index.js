@@ -26,6 +26,11 @@ const routes = [
     component: () => import('../views/Termine.vue')
   },
   {
+    path: '/termine/:name',
+    name: 'termineName',
+    component: () => import('../views/Gallery.vue')
+  },
+  {
     path: '/podcasts',
     name: 'podcasts',
     component: () => import('../views/Podcasts.vue')

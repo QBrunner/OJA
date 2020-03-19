@@ -27,7 +27,8 @@
 			</div>
 		</div>
 		<div class="eventWrapper">
-			<div class="event" v-for="(event, index) in shownEvents" :key="'event-' + index">
+			<div class="event" v-for="(event, index) in shownEvents" :key="'event-' + index"
+			@click="$router.push({ name: 'termineName', params: { name: event.link }})">
 				<img class="eventArrow" src="@/assets/Icons/Pfeil_nach_rechts.svg">
 				<div class="eventSection">
 					<h2 class="eventHeading">{{event.day}}. {{months[event.month]}} {{event.year}}</h2>
