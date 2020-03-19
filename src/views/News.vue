@@ -1,16 +1,16 @@
 <template>
   <div class="news">
-		<div class="newsImage-Container" @click="$router.push({ name: 'newsName', params: { name: 'oja-treffen' }})">
+		<div class="newsImage-Container" @click="$router.push({ name: 'newsName', params: { name: 'oja-treffen' }}).catch(err => {})">
 			<div>
 				<img src="@/assets/testing/Ice.jpg">
-				<div class="overlay"></div>
+				<div class="overlay"></div>router
 				<h3 class="newsHeading">OJA Treffen 16.03</h3>
 				<div class="newsShowMoreContainer">
 					<span class="newsShowMore">Mehr anzeigen<img src="@/assets/Icons/Pfeil_nach_rechts.svg"></span>
 				</div>
 			</div>
 		</div>
-		<div class="newsImage-Container" @click="$router.push({ name: 'newsName', params: { name: 'respekt' }})">
+		<div class="newsImage-Container" @click="$router.push({ name: 'newsName', params: { name: 'respekt' }}).catch(err => {})">
 			<img src="@/assets/testing/Ice1.jpg">
 			<div class="overlay"></div>
 			<h3 class="newsHeading">Aktion Respekt</h3>
@@ -18,7 +18,7 @@
 				<span class="newsShowMore">Mehr anzeigen<img src="@/assets/Icons/Pfeil_nach_rechts.svg"></span>
 			</div>
 		</div>
-		<div class="newsImage-Container" @click="$router.push({ name: 'newsName', params: { name: 'azubi-bowling' }})">
+		<div class="newsImage-Container" @click="$router.push({ name: 'newsName', params: { name: 'azubi-bowling' }}).catch(err => {})">
 			<img src="@/assets/testing/Ice2.jpg">
 			<div class="overlay"></div>
 			<h3 class="newsHeading">Azubi bowling</h3>
