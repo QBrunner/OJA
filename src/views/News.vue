@@ -1,29 +1,29 @@
 <template>
-  <div class="aktionen">
-		<div class="aktionenImage-Container" @click="$router.push({ name: 'aktionenName', params: { name: 'oja-treffen' }})">
+  <div class="news">
+		<div class="newsImage-Container" @click="$router.push({ name: 'newsName', params: { name: 'oja-treffen' }})">
 			<div>
 				<img src="@/assets/testing/Ice.jpg">
 				<div class="overlay"></div>
-				<h3 class="aktionenHeading">OJA Treffen 16.03</h3>
-				<div class="aktionenShowMoreContainer">
-					<span class="aktionenShowMore">Mehr anzeigen<img src="@/assets/Icons/Pfeil_nach_rechts.svg"></span>
+				<h3 class="newsHeading">OJA Treffen 16.03</h3>
+				<div class="newsShowMoreContainer">
+					<span class="newsShowMore">Mehr anzeigen<img src="@/assets/Icons/Pfeil_nach_rechts.svg"></span>
 				</div>
 			</div>
 		</div>
-		<div class="aktionenImage-Container" @click="$router.push({ name: 'aktionenName', params: { name: 'respekt' }})">
+		<div class="newsImage-Container" @click="$router.push({ name: 'newsName', params: { name: 'respekt' }})">
 			<img src="@/assets/testing/Ice1.jpg">
 			<div class="overlay"></div>
-			<h3 class="aktionenHeading">Aktion Respekt</h3>
-			<div class="aktionenShowMoreContainer">
-				<span class="aktionenShowMore">Mehr anzeigen<img src="@/assets/Icons/Pfeil_nach_rechts.svg"></span>
+			<h3 class="newsHeading">Aktion Respekt</h3>
+			<div class="newsShowMoreContainer">
+				<span class="newsShowMore">Mehr anzeigen<img src="@/assets/Icons/Pfeil_nach_rechts.svg"></span>
 			</div>
 		</div>
-		<div class="aktionenImage-Container" @click="$router.push({ name: 'aktionenName', params: { name: 'azubi-bowling' }})">
+		<div class="newsImage-Container" @click="$router.push({ name: 'newsName', params: { name: 'azubi-bowling' }})">
 			<img src="@/assets/testing/Ice2.jpg">
 			<div class="overlay"></div>
-			<h3 class="aktionenHeading">Azubi bowling</h3>
-			<div class="aktionenShowMoreContainer">
-				<span class="aktionenShowMore">Mehr anzeigen<img src="@/assets/Icons/Pfeil_nach_rechts.svg"></span>
+			<h3 class="newsHeading">Azubi bowling</h3>
+			<div class="newsShowMoreContainer">
+				<span class="newsShowMore">Mehr anzeigen<img src="@/assets/Icons/Pfeil_nach_rechts.svg"></span>
 			</div>
 		</div>
   </div>
@@ -31,7 +31,7 @@
 
 <script>
 	export default {
-		name: 'aktionen',
+		name: 'news',
 		data() {
 			return {
 				lastSize: 10000
@@ -49,13 +49,13 @@
 				this.lastSize = window.innerWidth
 			},
 			randomizeHeading: function(){
-				let list = document.getElementsByClassName('aktionenHeading')
+				let list = document.getElementsByClassName('newsHeading')
 				for(let it = 0; it < list.length; it++){
 					list[it].style.top = ((Math.random() * 30)) + '%'
 				}
 			},
 			resetHeading: function(){
-				let list = document.getElementsByClassName('aktionenHeading')
+				let list = document.getElementsByClassName('newsHeading')
 				for(let it = 0; it < list.length; it++){
 					list[it].style.top = 10 + '%'
 				}
@@ -72,12 +72,12 @@
 </script>
 
 <style lang="scss">
-	.aktionen{
+	.news{
 		min-height: calc(100vh - 164px);
 		margin: 0px 30px;
 		animation: fadeContent;
 		animation-duration: 1s;
-		.aktionenImage-Container{
+		.newsImage-Container{
 			cursor: pointer;
 			position: relative;
 			margin: 20px 0px;
@@ -97,22 +97,22 @@
 				transition: .5s ease;
 				background: rgba(0,0,0,0.5);
 			}
-			.aktionenHeading{
+			.newsHeading{
 				position: absolute;
 				font-size: 8vw;
 				top: 10%;
 			}
-			.aktionenShowMore{
+			.newsShowMore{
 				position: absolute;
 				bottom: 13%;
 				right: 20%;
 				transition: 0.7s ease;
 				white-space: nowrap;
 				font-size: 3.6vw;
-				animation-name: aktionenSlideIn;
+				animation-name: newsSlideIn;
 				animation-duration: 1.5s;
 			}
-			.aktionenShowMoreContainer{
+			.newsShowMoreContainer{
 				position: absolute;
 				top: 0;
 				height: 100%;
@@ -127,31 +127,31 @@
 				}
 			}
 		}
-    .aktionenImage-Container:first-child{
+    .newsImage-Container:first-child{
       margin-top: 100px;
     }
-		.aktionenImage-Container:nth-child(even){
-			.aktionenHeading{
+		.newsImage-Container:nth-child(even){
+			.newsHeading{
 				right: -10px;
 			}
 		}
-		.aktionenImage-Container:hover{
+		.newsImage-Container:hover{
 			.overlay{
 				opacity: 1;
 			}
-			.aktionenShowMore{
+			.newsShowMore{
 				right: 18%;
 			}
 		}
 	}
-	@keyframes aktionenSlideIn {
+	@keyframes newsSlideIn {
 		0%{ opacity: 0; transform: translateX(-100%)}
 		100%{ opacity: 1; transform: translateX(0%)}
 	}
 	@media only screen and (min-width: 768px) {
-		.aktionen{
+		.news{
 			min-height: calc(100vh - 194px);
-			.aktionenImage-Container{
+			.newsImage-Container{
 				img{
 					margin: 0px;
 					width: 100%;
@@ -160,7 +160,7 @@
 					left: 0;
 					width: 100%;
 				}
-				.aktionenShowMoreContainer{
+				.newsShowMoreContainer{
 					img{
 						width: 8.6vw;
 						margin: 0px 0px 0px 20px;
@@ -170,39 +170,39 @@
 		}
 	}
 	@media only screen and (min-width: 992px) {
-		.aktionen{
+		.news{
 			margin: 0px 20%;
-			.aktionenImage-Container{
+			.newsImage-Container{
 				margin: 80px 0px;
 				width: 62%;
         .overlay{
           opacity: 0;
         }
-				.aktionenHeading{
+				.newsHeading{
 					font-size: 5vw;
 				}
-				.aktionenShowMore{
+				.newsShowMore{
 					font-size: 1.4em;
 					transition: 0.7s ease;
 				}
-				.aktionenShowMoreContainer{
+				.newsShowMoreContainer{
 					img{
 						width: 3.6vw;
 					}
 				}
 			}
-      .aktionenImage-Container:first-child{
+      .newsImage-Container:first-child{
         margin-top: 160px;
       }
-			.aktionenImage-Container:nth-child(even){
+			.newsImage-Container:nth-child(even){
 				margin-left: auto;
 				margin-right: 0px;
-				.aktionenHeading{
+				.newsHeading{
 					right: -40%;
 				}
 			}
-			.aktionenImage-Container:nth-child(odd){
-				.aktionenHeading{
+			.newsImage-Container:nth-child(odd){
+				.newsHeading{
 					left: -40%;
 				}
 			}

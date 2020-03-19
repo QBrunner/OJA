@@ -11,14 +11,19 @@ const routes = [
     component: Home
   },
   {
-		path: '/kontakt',
-    name: 'kontakt',
-    component: () => import('../views/Kontakt.vue')
+		path: '/news',
+		name: 'news',
+		component: () => import('../views/News.vue')
 	},
   {
-    path: '/kalender',
-    name: 'kalender',
-    component: () => import('../views/Kalender.vue')
+		path: '/news/:name',
+    name: 'newsName',
+    component: () => import('../views/Gallery.vue')
+	},
+  {
+    path: '/termine',
+    name: 'termine',
+    component: () => import('../views/Termine.vue')
   },
   {
     path: '/podcasts',
@@ -26,14 +31,19 @@ const routes = [
     component: () => import('../views/Podcasts.vue')
   },
   {
-		path: '/aktionen',
-		name: 'aktionen',
-		component: () => import('../views/Aktionen.vue')
-	},
-	{
-		path: '/aktionen/:name',
-    name: 'aktionenName',
-    component: () => import('../views/Gallery.vue')
+    path: '/mehrvonuns',
+    name: 'mehrvonuns',
+    component: () => import('../views/Mehr von uns.vue')
+  },
+  {
+    path: '/mitmachen',
+    name: 'mitmachen',
+    component: () => import('../views/Mitmachen.vue')
+  },
+  {
+		path: '/kontakt',
+    name: 'kontakt',
+    component: () => import('../views/Kontakt.vue')
 	}
 ]
 

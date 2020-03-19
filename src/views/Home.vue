@@ -4,21 +4,21 @@
 			<img class="arrowBottom" id="arrowBottom" src="@/assets/Icons/Pfeil_nach_unten.svg">
 		</div>
 		<div class="content">
-			<kalender />
-			<aktionen />
+			<termine />
+			<news />
 		</div>
 	</div>
 </template>
 
 <script>
-	import aktionen from '../views/Aktionen.vue'
-	import kalender from '../views/Kalender.vue'
+	import news from '../views/News.vue'
+	import termine from '../views/Termine.vue'
 
 	export default {
 		name: 'Home',
 		components: {
-			aktionen,
-			kalender
+			news,
+			termine
 		},
 		data() {
 			return {
@@ -68,9 +68,9 @@
 				}
 			},
 			toggleNaviActive: function(){
-				let elem = document.getElementById('aktionen')
-				let kelem = document.getElementById('kalender')
-				if(window.pageYOffset > document.getElementsByClassName('kalender')[0].getBoundingClientRect().bottom){
+				let elem = document.getElementById('news')
+				let kelem = document.getElementById('termine')
+				if(window.pageYOffset > document.getElementsByClassName('termine')[0].getBoundingClientRect().bottom){
 					if(!elem.classList.contains('active')){
 						elem.classList.toggle('active')
 					}
@@ -120,13 +120,13 @@
 	}
 	.content{
 		width: 100%;
-		.aktionen{
+		.news{
 			min-height: 0px;
-			.aktionenImage-Container:first-child{
+			.newsImage-Container:first-child{
 				margin-top: 20px;
 			}
 		}
-		.kalender{
+		.termine{
 			min-height: 0px;
 			margin-bottom: 110px;
 		}

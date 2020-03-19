@@ -1,5 +1,5 @@
 <template>
-	<div class="kalender">
+	<div class="termine">
 		<div class="calendarWrapper">
 			<div class="calendarMonth">
 				<div class="monthPrevious" @click="previous">&#60;</div>
@@ -22,6 +22,9 @@
 					</div>
 				</div>
 			</div>
+			<div class="oja-button" @click="showAllOJA">
+				Alle OJA-Treffen anzeigen
+			</div>
 		</div>
 		<div class="eventWrapper">
 			<div class="event" v-for="(event, index) in shownEvents" :key="'event-' + index">
@@ -41,7 +44,7 @@
 
 <script>
 	export default {
-		name: 'aktionen',
+		name: 'termines',
 		data() {
 			return {
 				year: 0, //specified year (current year for start)
@@ -52,11 +55,15 @@
 				visualMonth: [],
 				days: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
 				months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-				events: [{year: 2020, month: 2, day: 22, title: 'Birthday', link: 'asdf'},
-				{year: 2020, month: 2, day: 31, title: 'End of the Month', link: 'asdf'},
-				{year: 2020, month: 2, day: 31, title: 'End', link: 'asdf'},
-				{year: 2019, month: 8, day: 31, title: 'End of the Month', link: 'asdf'},
-				{year: 2020, month: 2, day: 2, title: 'End of the Month', link: 'asdf'}],
+				events: [
+					{year: 2020, month: 3, day: 1, title: 'Start of the Month', isOJA: true, link: 'asdf'},
+					{year: 2020, month: 2, day: 16, title: 'OJA Treffen', isOJA: true, link: 'asdf'},
+					{year: 2020, month: 2, day: 22, title: 'Birthday', isOJA: false, link: 'asdf'},
+					{year: 2020, month: 2, day: 31, title: 'End of the Month', isOJA: false, link: 'asdf'},
+					{year: 2020, month: 2, day: 31, title: 'End of the Month 2', isOJA: true, link: 'asdf'},
+					{year: 2019, month: 8, day: 31, title: 'End of the Month', isOJA: false, link: 'asdf'},
+					{year: 2019, month: 3, day: 1, title: 'Start of the Month', isOJA: true, link: 'asdf'},
+				],
 				currentEvents: [],
 				shownEvents: [],
 				showAll: true,
@@ -178,6 +185,18 @@
 					}
 				}
 			},
+			showAllOJA: function(){
+				let meetings = []
+				for(let i = 0; i < this.events.length; i++){
+					if(this.events[i].isOJA){
+						meetings.push(this.events[i])
+					}
+				}
+				meetings.sort((a, b) => parseFloat(a.day) - parseFloat(b.day));
+				meetings.sort((a, b) => parseFloat(a.month) - parseFloat(b.month));
+				meetings.sort((a, b) => parseFloat(a.year) - parseFloat(b.year));
+				this.shownEvents = meetings;
+			},
 			select: function(day, curMonth){
 				let year = this.date.getFullYear()
 				let month = this.date.getMonth()
@@ -203,7 +222,7 @@
 </script>
 
 <style lang="scss">
-	.kalender {
+	.termine {
 			min-height: calc(100vh - 164px);
 			margin: 0 30px;
 			.calendarWrapper{
@@ -272,6 +291,7 @@
 					//background-color: #e3001b;
 					//box-shadow: 0 5px 10px -5px rgba(0, 0, 0, .75);
 					//border-radius: 50%;
+					transition: 0.5s ease;
 					color: yellow;
 				}
 				.bodyDaySelected:before{
@@ -313,6 +333,24 @@
 						height: 1px;
 						background-color: #e3001b;
 					}
+				}
+				.oja-button{
+					text-align: center;
+					position: relative;
+					transition: 0.5s ease;
+					padding: 20px 10px;
+					border: 2px solid black;
+					border-radius: 7px;
+					box-shadow: 5px 10px 20px black;
+					margin: 20px 0px;
+					animation-name: contactFadeIn;
+					animation-duration: 1s;
+					width: 100%;
+					cursor: pointer;
+					margin: 20px auto;
+				}
+				.oja-button:hover{
+					scale: 1.02;
 				}
 			}
 			.eventWrapper{
@@ -363,7 +401,7 @@
 			}
 	}
 	@media only screen and (min-width: 460px){
-		.kalender{
+		.termine{
 			.calendarWrapper{
 				width: 350px;
 				.calendarMonth{
@@ -409,7 +447,7 @@
 		}
 	}
 	@media only screen and (min-width: 768px) {
-			.kalender {
+			.termine {
 					min-height: calc(100vh - 194px);
 					.calendarWrapper{
 						width: 490px;
@@ -438,7 +476,7 @@
 			}
 	}
 	@media only screen and (min-width: 992px) {
-			.kalender {
+			.termine {
 					min-height: calc(100vh - 194px);
 					.calendarWrapper{
 						width: 770px;
@@ -474,6 +512,9 @@
 							width: 70px;
 							height: 70px;
 							line-height: 70px;
+						}
+						.oja-button{
+							width: 490px;
 						}
 					}
 					.eventWrapper{

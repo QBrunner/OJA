@@ -10,11 +10,13 @@
 		<div class="navigation" id="navigation">
 			<div class="left">
 				<span class="close-button" @click="toggleNavigation">&times;</span>
-				<span class="linkNaviWrapper" id="aktionen"><a class="linkNavi" @click="$router.push({ name: 'aktionen'}); toggleNavigation()">Aktionen</a></span>
-				<span class="linkNaviWrapper" id="kalender"><a class="linkNavi" @click="$router.push({ name: 'kalender'}); toggleNavigation()">Kalender</a></span>
+				<span class="linkNaviWrapper" id="news"><a class="linkNavi" @click="$router.push({ name: 'news'}); toggleNavigation()">News</a></span>
+				<span class="linkNaviWrapper" id="termine"><a class="linkNavi" @click="$router.push({ name: 'termine'}); toggleNavigation()">Termine</a></span>
+				<span class="linkNaviWrapper" id="mehrvonuns"><a class="linkNavi" @click="$router.push({ name: 'mehrvonuns'}); toggleNavigation()">Mehr von Uns</a></span>
 			</div>
 			<div class="right">
 				<span class="linkNaviWrapper" id="podcasts"><a class="linkNavi" @click="$router.push({ name: 'podcasts'}); toggleNavigation()">Podcasts</a></span>
+				<!--<span class="linkNaviWrapper" id="mitmachen"><a class="linkNavi" @click="$router.push({ name: 'mitmachen'}); toggleNavigation()">Mitmachen</a></span>-->
 				<span class="linkNaviWrapper" id="kontakt"><a class="linkNavi" @click="$router.push({ name: 'kontakt'}); toggleNavigation()">Kontakt</a></span>
 			</div>
 		</div>
@@ -52,8 +54,8 @@
 		watch: {
 			'$route'(to) {
 				let elem = {}
-				if(to.name === 'aktionenName'){
-					elem = document.getElementById('aktionen')
+				if(to.name === 'newsName'){
+					elem = document.getElementById('news')
 				}
 				else{
 					elem = document.getElementById(to.name)
@@ -173,7 +175,7 @@
 			.left{
 				text-align:center;
 				a{
-					font-size: 8vh;
+					font-size: 6vh;
 				}
 				span{
 					font-size: 25px;
@@ -191,7 +193,7 @@
 			.right{
 				text-align:center;
 				a{
-					font-size: 8vh;
+					font-size: 6vh;
 				}
 			}
 
@@ -263,7 +265,7 @@
 					transform: translate(0%, 50%);
 					a{
 						font-size: 19px;
-						margin-right: 85px;
+						margin-right: 50px;
 					}
 					span{
 						font-size: 19px;
@@ -275,10 +277,28 @@
 					right: 90px;
 					a{
 						font-size: 19px;
-						margin-left: 75px;
+						margin-left: 50px;
 					}
 					span{
 						font-size: 19px;
+					}
+				}
+			}
+		}
+	}
+	@media only screen and (min-width: 1400px) {
+		.wrapper{
+			.navigation{
+				.left{
+					left: 80px;
+					a{
+						margin-right: 85px;
+					}
+				}
+				.right{
+					right: 90px;
+					a{
+						margin-left: 75px;
 					}
 				}
 			}
