@@ -60,6 +60,9 @@
 				else if(to.name === 'termineName'){
 					elem = document.getElementById('termine')
 				}
+				else if(to.name === 'podcastsName'){
+					elem = document.getElementById('podcasts')
+				}
 				else{
 					elem = document.getElementById(to.name)
 				}
