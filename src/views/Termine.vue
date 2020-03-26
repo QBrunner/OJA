@@ -52,15 +52,7 @@
 				visualMonth: [],
 				days: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
 				months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-				events: [
-					{year: 2020, month: 3, day: 1, title: 'Start of the Month', isOJA: true, link: 'asdf'},
-					{year: 2020, month: 2, day: 16, title: 'OJA Treffen', isOJA: true, link: 'asdf'},
-					{year: 2020, month: 2, day: 22, title: 'Birthday', isOJA: false, link: 'asdf'},
-					{year: 2020, month: 2, day: 31, title: 'End of the Month', isOJA: false, link: 'asdf'},
-					{year: 2020, month: 2, day: 31, title: 'End of the Month 2', isOJA: true, link: 'asdf'},
-					{year: 2019, month: 8, day: 31, title: 'End of the Month', isOJA: false, link: 'asdf'},
-					{year: 2019, month: 3, day: 1, title: 'Start of the Month', isOJA: true, link: 'asdf'},
-				],
+				events: [],
 				currentEvents: [],
 				shownEvents: [],
 				showAll: true,
@@ -75,6 +67,7 @@
 				this.daySelected = new Date(this.year, this.month, this.date.getDate())
 				this.calculateMonths()
 				this.showAll = true;
+				this.events = require('@/assets/Content/Termine/termine.json')
 				this.calculateShownEvents()
 			},
 			calculateMonths: function() {

@@ -2,13 +2,10 @@
 	<div class="kontakt">
 		<div class="kontaktHeadingContainer">
 			<h1 class="kontaktHeading">Kontakt</h1>
-			<h2 class="kontaktSlogan">Wir für mehr</h2>
 		</div>
 		<div class="kontaktFormContainer">
 			<p class="kontaktTextContainer">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				{{ text }}
 			</p>
 			<div class="row no gutters">
 				<div class="col-12 col-md-6">
@@ -33,6 +30,25 @@
 	</div>
 </template>
 
+<script>
+	export default {
+		name: 'kontakt',
+		data() {
+			return {
+				text: "",
+				email: "",
+			}
+		},
+		methods: {
+		},
+		created(){
+			let data = JSON.parse(require('@/assets/Content/Kontakt/kontakt.json'))
+			this.text = data.text
+			this.email = data.email
+		}
+	}
+</script>
+
 <style lang="scss">
 	.kontakt{
 		min-height: calc(100vh - 174px);
@@ -41,9 +57,6 @@
 			margin-right: 10px;
 			.kontaktHeading{
 				font-size: 65px;
-			}
-			.kontaktSlogan{
-				font-size: 17px;
 			}
 		}
 		.kontaktFormContainer{
@@ -112,10 +125,6 @@
 			.kontaktHeadingContainer{
 				.kontaktHeading{
 					font-size: 9em;
-				}
-				.kontaktSlogan{
-					font-size: 2.5em;
-					display: none;
 				}
 			}
 			.kontaktFormContainer{
