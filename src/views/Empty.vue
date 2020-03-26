@@ -4,6 +4,18 @@
   </div>
 </template>
 
+<script>
+	export default {
+		name: 'root',
+		data() {
+			return {
+			}
+		},
+		methods: {
+		}
+	}
+</script>
+
 <style lang="scss">
   .root{
     min-height: calc(100vh - 174px);

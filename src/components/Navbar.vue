@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="logo" id="logo" :style="[logoBackground ? {'z-index': 0} : {'z-index': 2}]"  @click="$router.push({ name: 'home'}).catch(err => {})">
-			<img src="@/assets/testing/mainPageWhite.png">
+			<img src="@/assets/Icons/Logo.svg">
 		</div>
 	</div>
 </template>

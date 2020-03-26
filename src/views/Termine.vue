@@ -39,10 +39,6 @@
 	</div>
 </template>
 
-<!--<div class="day-overview col" v-for="(weekday, id) in daysVisual" :key="'month' + Math.random() + id">
-	{{ weekday }}
-</div>-->
-
 <script>
 	export default {
 		name: 'termines',
