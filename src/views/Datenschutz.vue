@@ -1,25 +1,33 @@
 <template>
 	<div class="datenschutz">
 		<div class="datenschutzWrapper">
-			<div class="datenschutzSection">
-				<h2>Datenschutz</h2>
+			<div class="datenschutzSection" v-for="(section, index) in sections" :key="'datenschutz' + index">
+				<h2>{{section.heading}}</h2>
 				<p>
-					This is a test paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				</p>
-			</div>
-			<div class="datenschutzSection">
-				<h2>This is a test heading</h2>
-				<p>
-					This is a test paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					{{section.text}}
 				</p>
 			</div>
 		</div>
 	</div>
 </template>
+
+<script>
+	export default {
+		name: 'datenschutz',
+		data() {
+			return {
+				sections: [
+				]
+			}
+		},
+		methods: {
+		},
+		created(){
+			let data = JSON.parse(require('@/assets/Content/Datenschutz/datenschutz.json'))
+			this.sections = data
+		}
+	}
+</script>
 
 <style lang="scss">
 	.datenschutz{

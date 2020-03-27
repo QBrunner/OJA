@@ -67,7 +67,7 @@
 				this.daySelected = new Date(this.year, this.month, this.date.getDate())
 				this.calculateMonths()
 				this.showAll = true;
-				this.events = require('@/assets/Content/Termine/termine.json')
+				this.events = JSON.parse(require('@/assets/Content/Termine/termine.json'))
 				this.calculateShownEvents()
 			},
 			calculateMonths: function() {
