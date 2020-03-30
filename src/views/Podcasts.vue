@@ -18,17 +18,13 @@
 		data() {
 			return {
 				podcasts: [
-          {
-            title: "Title",
-            text: `description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.`,
-            link: "test"
-          }
         ]
 			}
 		},
 		methods: {
+		},
+    created(){
+			this.podcasts = require('@/assets/Podcasts/podcasts.json')
 		}
 	}
 </script>

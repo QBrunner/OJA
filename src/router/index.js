@@ -46,11 +46,6 @@ const routes = [
     component: () => import('../views/Mehr von uns.vue')
   },
   {
-    path: '/mitmachen',
-    name: 'mitmachen',
-    component: () => import('../views/Mitmachen.vue')
-  },
-  {
 		path: '/kontakt',
     name: 'kontakt',
     component: () => import('../views/Kontakt.vue')
@@ -64,7 +59,17 @@ const routes = [
 		path: '/impressum',
     name: 'impressum',
     component: () => import('../views/Impressum.vue')
-	}
+	},
+  {
+    path: '/editor-overview',
+    name: 'editor-overview',
+    component: () => import('../views/EditorOverview.vue')
+  },
+  {
+    path: '/editor-rechtliches',
+    name: 'editor-rechtliches',
+    component: () => import('../views/Rechtliches.vue')
+  }
 ]
 
 const router = new VueRouter({

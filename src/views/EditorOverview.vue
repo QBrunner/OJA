@@ -1,16 +1,28 @@
 <template>
-  <div class="mitmachen">
+  <div class="root">
 
   </div>
 </template>
 
+<script>
+	export default {
+		name: 'root',
+		data() {
+			return {
+			}
+		},
+		methods: {
+		}
+	}
+</script>
+
 <style lang="scss">
-  .mitmachen{
+  .root{
     min-height: calc(100vh - 174px);
     margin: 0px 30px;
   }
   @media only screen and (min-width: 768px) {
-		.mitmachen{
+		.root{
 			min-height: calc(100vh - 194px);
     }
   }

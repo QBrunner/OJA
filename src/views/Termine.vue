@@ -55,7 +55,6 @@
 				events: [],
 				currentEvents: [],
 				shownEvents: [],
-				showAll: true,
 			}
 		},
 		methods: {
@@ -65,10 +64,9 @@
 				this.year = this.date.getFullYear()
 				this.month = this.date.getMonth()
 				this.daySelected = new Date(this.year, this.month, this.date.getDate())
-				this.calculateMonths()
-				this.showAll = true;
 				this.events = JSON.parse(require('@/assets/Content/Termine/termine.json'))
-				this.calculateShownEvents()
+				this.calculateMonths()
+				this.calculateAllShownEvents()
 			},
 			calculateMonths: function() {
 				let visualMonth = []
@@ -140,8 +138,7 @@
 				this.year = this.date.getFullYear()
 				this.month = this.date.getMonth()
 				this.calculateMonths()
-				this.showAll = true;
-				this.calculateShownEvents()
+				this.calculateAllShownEvents()
 			},
 			next: function() {
 				if(this.month == 11){
@@ -153,27 +150,25 @@
 				this.year = this.date.getFullYear()
 				this.month = this.date.getMonth()
 				this.calculateMonths()
-				this.showAll = true;
-				this.calculateShownEvents()
+				this.calculateAllShownEvents()
+			},
+			calculateAllShownEvents: function(){
+				this.shownEvents = []
+				for(let i = 0; i < this.events.length; i++){
+						if(this.events[i].year == this.year && this.events[i].month == this.month){
+							this.shownEvents.push(this.events[i])
+						}
+				}
+				this.shownEvents.sort((a, b) => parseFloat(a.day) - parseFloat(b.day));
 			},
 			calculateShownEvents: function(day){
-				if(this.showAll){
-					this.shownEvents = []
-					for(let i = 0; i < this.events.length; i++){
-							if(this.events[i].year == this.year && this.events[i].month == this.month){
-								this.shownEvents.push(this.events[i])
-							}
-					}
-					this.shownEvents.sort((a, b) => parseFloat(a.day) - parseFloat(b.day));
+				this.shownEvents = []
+				for(let i = 0; i < this.events.length; i++){
+						if(this.events[i].year == this.daySelected.getFullYear() && this.events[i].month == this.daySelected.getMonth() && this.events[i].day == day){
+							this.shownEvents.push(this.events[i])
+						}
 				}
-				else{
-					this.shownEvents = []
-					for(let i = 0; i < this.events.length; i++){
-							if(this.events[i].month == this.daySelected.getMonth() && this.events[i].day == day){
-								this.shownEvents.push(this.events[i])
-							}
-					}
-				}
+				window.console.log(this.daySelected.getFullYear())
 			},
 			showAllOJA: function(){
 				let meetings = []
@@ -201,8 +196,7 @@
 					}
 				}
 				this.daySelected = new Date(year, curMonth, day)
-				this.showAll = false
-				this.calculateShownEvents(day, month)
+				this.calculateShownEvents(day)
 			}
 		},
 		created() {

@@ -1,15 +1,15 @@
 <template>
 	<div class="podcast">
 		<div class="podcastHeadingContainer">
-			<h1 class="podcastHeading">{{ title }}</h1>
+			<h1 class="podcastHeading">{{ data.title }}</h1>
 		</div>
 		<div class="podcastDescription">
 			<p>
-				{{ description }}
+				{{ data.description }}
 			</p>
 		</div>
 		<div class="podcastAudioContainer">
-			<div class="podcastOverview" v-for="(audio, id) in audios" :key="'Audio' + id">
+			<div class="podcastOverview" v-for="(audio, id) in data.audios" :key="'Audio' + id">
 				<audio controls>
 					<source :src="require(`@/assets/Audio/${audio}`)" type="audio/mpeg">
 				Your browser does not support the audio element.
@@ -24,14 +24,32 @@
 		name: 'podcast',
 		data() {
 			return {
-				title: "Aktion Respekt",
-				description: `Aktion Respekt. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
-				audios: [ "Rassismus Schilder 1.mp3", "Rassismus Schilder 2.mp3"]
+				data: {
+					title: "",
+					link: "",
+					description: ``,
+					audios: []
+				}
 			}
 		},
 		methods: {
+			stringify: function(){
+				let arr = []
+				arr.push(this.data)
+				let text = JSON.stringify(arr)
+				window.console.log(text)
+				let input = document.getElementById('stringify')
+				input.value = text
+				input.select()
+				document.execCommand("copy")
+			}
+		},
+		created(){
+			let imported = require('@/assets/Podcasts/Podcast/podcast.json')
+			let obj = imported.find(o => o.link === this.$route.params.name)
+			if(obj){
+				this.data = obj
+			}
 		}
 	}
 </script>
