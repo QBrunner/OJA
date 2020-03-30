@@ -73,7 +73,9 @@
 					}
 				}
 				if(to.name != 'home' && to.name != 'impressum' && to.name != 'datenschutz'){
-					elem.classList.toggle('active')
+					if(elem){
+						elem.classList.toggle('active')
+					}
 				}
 			}
 		},

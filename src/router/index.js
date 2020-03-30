@@ -66,7 +66,7 @@ const routes = [
     component: () => import('../views/EditorOverview.vue')
   },
   {
-    path: '/editor-rechtliches',
+    path: '/editor-rechtliches/:name',
     name: 'editor-rechtliches',
     component: () => import('../views/Rechtliches.vue')
   }
