@@ -43,7 +43,6 @@
 		},
 		methods: {
 			openModal: function(num){
-        window.console.log(this.$route)
 				this.lastId = num
 				document.getElementById('Modal-' + this.lastId).classList.toggle('galleryNameImage-ContainerInner-Modal')
 				document.getElementById('gallery').classList.toggle('galleryNameCompleteOverlayActive')
