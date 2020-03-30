@@ -1,6 +1,8 @@
 <template>
 	<div class="footer row no-gutters">
-		<div class="col"></div>
+		<div class="col left">
+			<span class="link" @click="$router.push({ name: 'editor-overview'}).catch(err => {});">Editor</span>
+		</div>
 		<div class="right col-auto">
 			<span class="link" id="impressum" @click="$router.push({ name: 'impressum'}).catch(err => {});">Impressum</span>
 			<span class="link" id="datenschutz" @click="$router.push({ name: 'datenschutz'}).catch(err => {});">Datenschutz</span>
@@ -66,6 +68,9 @@ export default {
 				margin-left: 25px;
 			}
 		}
+		.left{
+			margin-left: 10px;
+		}
 	}
 	@media only screen and (min-width: 768px) {
 		.footer{
@@ -78,6 +83,9 @@ export default {
 				span{
 					margin-left: 40px;
 				}
+			}
+			.left{
+				margin-left: 80px;
 			}
 		}
 	}
