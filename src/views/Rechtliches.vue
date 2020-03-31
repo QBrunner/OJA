@@ -1,7 +1,7 @@
 <template>
-	<div class="impressum">
-		<div class="impressumWrapper">
-			<div class="impressumSection" v-for="(section, index) in sections" :key="'impressum' + index">
+	<div class="rechtliches">
+		<div class="rechtlichesWrapper">
+			<div class="rechtlichesSection" v-for="(section, index) in sections" :key="'rechtliches' + index">
 				<input class="heading" v-model="section.heading"/>
 				<textarea v-model="section.text"></textarea>
 				<div class="switches">
@@ -25,7 +25,7 @@
 
 <script>
 	export default {
-		name: 'impressum',
+		name: 'rechtliches',
 		data() {
 			return {
 				sections: [
@@ -84,12 +84,12 @@
 </script>
 
 <style lang="scss">
-	.impressum{
+	.rechtliches{
 		min-height: calc(100vh - 174px);
 		margin: 0px 30px;
-		.impressumWrapper{
+		.rechtlichesWrapper{
 			padding-top: 30px;
-			.impressumSection{
+			.rechtlichesSection{
 				margin-bottom: 40px;
 				position: relative;
         transition: 0.5s ease;
@@ -126,7 +126,7 @@
 					}
 				}
 			}
-			.impressumSection:last-child {
+			.rechtlichesSection:last-child {
 				margin-bottom: 0px;
 			}
 			.createButton{
@@ -150,9 +150,9 @@
 		}
 	}
 	@media only screen and (min-width: 768px) {
-		.impressum{
+		.rechtliches{
 			min-height: calc(100vh - 194px);
-			.impressumWrapper{
+			.rechtlichesWrapper{
 				padding-top: 40px;
 				width: 80%;
 				margin: 0px 100px 0px auto;
