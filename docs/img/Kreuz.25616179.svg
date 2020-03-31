@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="20px" viewBox="0 0 21 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>pfeil</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Enwurf" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g transform="translate(-709.000000, -162.000000)" stroke="#FFFFFF">
+            <g id="pfeil" transform="translate(720.000000, 172.000000) scale(-1, 1) rotate(-360.000000) translate(-720.000000, -172.000000) translate(709.000000, 161.000000)">
+                <line x1="23.9317972" y1="10.948462" x2="-2.12887179" y2="10.948462" id="Line" transform="translate(11.275547, 10.724453) rotate(-135.000000) translate(-11.275547, -10.724453) "></line>
+                <line x1="23.9317972" y1="10.948462" x2="-2.12887179" y2="10.948462" id="Line" transform="translate(11.275547, 10.724453) scale(-1, 1) rotate(-135.000000) translate(-11.275547, -10.724453) "></line>
+            </g>
+        </g>
+    </g>
+</svg>
