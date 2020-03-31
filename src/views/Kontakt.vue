@@ -9,17 +9,17 @@
 			</p>
 			<div class="row no gutters">
 				<div class="col-12 col-md-6">
-					<p>*Name</p>
+					<p>Name</p>
 					<input>
 				</div>
 				<div class="col-12 col-md-6">
-					<p>*Email</p>
+					<p>Email</p>
 					<input>
 				</div>
 			</div>
 			<div class="row no gutters">
 				<div class="col-12">
-					<p>*Nachricht</p>
+					<p>Nachricht</p>
 					<textarea></textarea>
 				</div>
 			</div>
