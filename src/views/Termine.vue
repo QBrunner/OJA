@@ -15,7 +15,7 @@
 				<div class="bodyWeek" v-for="(row, id1) in visualMonth" :key="'week' + id1">
 					<div class="bodyDay" v-for="(col, id2) in row" :key="'day' + id2" @click="select(col.num, col.curMonth)"
 					:class="[col.curMonth == month ? 'bodyDayCurrentMonth' : '', (currentDate.getFullYear() == year &&
-					currentDate.getMonth() == month && currentDate.getDate() == col.num) ? 'bodyDayToday' : '',
+					currentDate.getMonth() == col.curMonth && currentDate.getDate() == col.num) ? 'bodyDayToday' : '',
 					(daySelected.getFullYear() == col.curYear && daySelected.getMonth() == col.curMonth && daySelected.getDate() == col.num) ? 'bodyDaySelected' : '',
 					(currentEvents[id1][id2].year != -1) ? 'bodyDayEvent' : '']">
 						{{ col.num }}
