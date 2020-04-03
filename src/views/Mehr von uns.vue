@@ -6,7 +6,7 @@
 				{{ section.text }}
 			</p>
 			<div class="pdfSection row no-gutters">
-				<div class="col pdfDownload" v-for="(pdf, id) in section.pdfSection" :key="'pdf-' + id" @click="downloadDocument(pdf.downloadFile)">{{ pdf.downloadText }}</div>
+				<div class="col pdfDownload" v-for="(pdf, id) in section.pdfSection" :key="'pdf-' + id" @click="downloadDocument(pdf.downloadFile, pdf.downloadTitle)">{{ pdf.downloadText }}</div>
 			</div>
 			<div class="pdfSection row no-gutters">
 				<a class="col pdfDownload" v-for="(link, id) in section.links" :key="'link-' + id" :href="link.link" target="_blank">{{ link.linkText }}</a>
@@ -29,8 +29,8 @@
 					{ heading: "Beitrittsformular", text: "Beitrittsformular text",
 					pdfSection:
 						[
-							{downloadText: "Deutsch", downloadTitle:"Beitrittsformular deutsch.pdf", downloadFile: ""},
-							{downloadText: "Englisch", downloadTitle:"Beitrittsformular englisch.pdf", downloadFile: ""},
+							{downloadText: "Download Deutsch", downloadTitle:"Beitrittsformular deutsch.pdf", downloadFile: ""},
+							{downloadText: "Download Englisch", downloadTitle:"Beitrittsformular englisch.pdf", downloadFile: ""},
 
 						],
 					links:
@@ -53,7 +53,7 @@
 			}
 		},
 		methods: {
-			downloadDocument: function(data){
+			downloadDocument: function(data, title){
 				/*let pdf = require('@/assets/Documents/Beitrittsformular deutsch.pdf')
 				let pdf2 =require('@/assets/Documents/Beitrittsformular englisch.pdf')
 				let text = document.getElementById('pdf')
@@ -66,7 +66,10 @@
 				text.select()
 				document.execCommand("copy")*/
 				//window.console.log(data)
-				window.open(data)
+				var a = document.createElement("a") //Create <a>
+				a.href = data //Image Base64 Goes here
+				a.download = title //File name Here
+				a.click()
 			},
 			stringify: function(){
 				let text = JSON.stringify(this.data)
