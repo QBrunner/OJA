@@ -45,7 +45,7 @@
 			}
 		},
 		created(){
-			let imported = require('@/assets/Podcasts/Podcast/podcast.json')
+			let imported = require('@/assets/Content/Podcasts/Podcast/podcast.json')
 			let obj = imported.find(o => o.link === this.$route.params.name)
 			if(obj){
 				this.data = obj

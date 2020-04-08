@@ -3,23 +3,46 @@
 		<div class="galleryNameCompleteOverlay"  @click="closeModal"></div>
 		<div class="galleryNamePartialOverlay"></div>
 		<div class="galleryNameHeadingContainer">
-			<h1 class="galleryNameHeading">{{ $route.params.name }}</h1>
+			<h1 class="galleryNameHeading">Aktion Respekt</h1>
 		</div>
 		<div class="galleryNameGalleryContainer">
 			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				Ende des Jahres 2019 hat die AfD in Frankfurt am Main vom dort ansässigen Bürgermeister gefordert,
+        das Schild der Partnerinitiative der IG Metall namens ‚Respekt! – Kein Platz für Rassismus‘ abzuhängen,
+        da dieses gegen das Neutralitäts- und Sachgebot verstoße. Darüber hinaus ging aus der Shell-Jugendstudie
+        von 2019 hervor, dass junge Menschen vermehrt politisch verdrossen sind.
+			</p>
+      <p>
+				Für uns eine Aufforderung zum Handeln, für uns ein Affront gegen Menschlichkeit,
+        Liebe und Frieden – wir baten beim Weilheimer Rathaus um Unterstützung und
+        forderten Bürgermeister und Stadtrat zum Aktionismus auf. Was wir wollten?
+        Wir wollten, dass die Stadt Weilheim in Oberbayern Gesicht zeigt, sich gegen
+        Rassismus, Diskriminierung und Intoleranz einsetzt und mit Anerkennung der
+        Partnerinitiative ein Signal an andere Städte und Gemeinden sendet.
+			</p>
+      <p>
+				Die dazu veröffentlichten Zeitungsartikel sollen Euch zeigen, mit wie viel
+        Engagement und Motivation wir uns für eine friedlichere Welt einsetzen.
+			</p>
+      <p>
+				Bezüglich unserer Forderung hatten wir großen Erfolg, aber seht selbst!
+			</p>
+      <p>
+				An dieser Stelle möchte wir uns nochmals bei den Mitarbeiterinnen und Mitarbeitern,
+        dem Team der IG Metall Weilheim, beim Ortvorstandsmitglied Walter ‚Wacky‘ Hain,
+        allen Unterstützerinnen und Unterstützern, beim Stadtrat und dem Bürgermeister
+        Markus Loth der Stadt Weilheim in Oberbayern bedanken. Es ist uns ein Fest –
+        vielen lieben Dank - weiterhin für eine bessere, gerechte und friedliche Welt!
 			</p>
 			<div class="galleryNameImage-Container row no-gutters">
 				<div v-for="(data, id) in images" :id="'galleryNameContainer-' + id" :key="'galleryNameContainer-' + id" class="col-12 col-lg-6 col-xl-4 galleryNameImage-ContainerInner" @click="openModal(id)">
-					<img class="galleryNameImage" :src="require(`@/assets/testing/${data}`)">
+					<img class="galleryNameImage" :src="require(`@/assets/Images/${data}`)">
 					<div class="galleryNameOverlay"><img class="galleryNamePfeilQuadrat" src="@/assets/Icons/Pfeil_Quadrat.svg"></div>
 				</div>
 			</div>
 			<div class="galleryNameImage-Container row no-gutters">
 				<div v-for="(data, id) in images" :id="'Modal-' + id" :key="'Modal-' + id" class="col-12 col-lg-6 col-xl-4 galleryNameImage-ContainerInner galleryNameImageModal">
-					<img class="galleryNameImage" :src="require(`@/assets/testing/${data}`)">
+					<img class="galleryNameImage" :src="require(`@/assets/Images/${data}`)">
 					<img class="galleryNameCloseIcon" src="@/assets/Icons/Kreuz.svg" @click="closeModal">
 					<div class="galleryNameImageModalRight" @click="next"></div>
 					<img class="galleryNameArrowRight" src="@/assets/Icons/Pfeil_nach_rechts.svg" @click="next">
@@ -38,7 +61,7 @@
 			return {
 				lastId: '',
 				closing: false,
-				images: ['Ice3.jpg', 'Ice1.jpg', 'Ice2.jpg', 'Ice.jpg' ],
+				images: ['1_Zeitungsartikel.jpg', '2_Zeitungsartikel.jpg', '3_Übergabe.jpg'],
 			}
 		},
 		methods: {
@@ -277,6 +300,9 @@
 				margin-top: 30px;
 				margin-right: 12%;
 				font-size: 1.5em;
+        p{
+          margin-bottom: 2rem;
+        }
 				.galleryNameImage-Container{
 					.galleryNameImage-ContainerInner{
 						padding: 0px 60px 0px 0px;

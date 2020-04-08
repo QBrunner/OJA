@@ -4,9 +4,11 @@
 			<h1 class="kontaktHeading">Kontakt</h1>
 		</div>
 		<div class="kontaktFormContainer">
-			<p class="kontaktTextContainer">
-				{{ text }}
-			</p>
+			<div class="kontaktTextContainer">
+				<p class="kontaktText" v-for="(text, index) in data.texts" :key="'kontakt-text-' + index">
+					{{ text }}
+				</p>
+			</div>
 			<div class="row no gutters">
 				<div class="col-12 col-md-6">
 					<p>Name</p>
@@ -35,16 +37,31 @@
 		name: 'kontakt',
 		data() {
 			return {
-				text: "",
-				email: "",
+				data: {
+					texts: [
+						`Immer unter dem Motto: „Don’t hesitate to say hello!“.`,
+						`Falls ihr Fragen, Anliegen, Anregungen, Wünsche habt,
+						dann könnt ihr uns jederzeit via Facebook und Instagram eine Nachricht
+						zukommen lassen.`,
+						`Ansonsten besteht die Möglichkeit unseren Jugendsekretär
+						Patrick telefonisch unter +49 (0) 176 20424016, via Mail unter
+						Patrick.Grabanyi@igmetall.de zu kontaktieren. Die Geschäftsstelle
+						der IG Metall Weilheim ist per Mail unter weilheim@igmetall.de oder unter
+						Berücksichtigung der Öffnungszeiten persönlich zu erreichen.`
+					],
+					email: "",
+				}
 			}
 		},
 		methods: {
+			stringify: function(){
+				window.console.log(this.data)
+			}
 		},
 		created(){
-			let data = JSON.parse(require('@/assets/Content/Kontakt/kontakt.json'))
-			this.text = data.text
-			this.email = data.email
+			//let data = JSON.parse(require('@/assets/Content/Kontakt/kontakt.json'))
+			//this.text = data.text
+			//this.email = data.email
 		}
 	}
 </script>
@@ -65,6 +82,9 @@
 			margin-right: 15px;
 			.kontaktTextContainer{
 				margin-bottom: 30px;
+				.kontaktText{
+					margin-bottom: 20px;
+				}
 			}
 			textarea{
 				background: $background;
