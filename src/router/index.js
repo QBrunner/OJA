@@ -69,6 +69,10 @@ const routes = [
     path: '/editor-rechtliches/:name',
     name: 'editor-rechtliches',
     component: () => import('../views/Rechtliches.vue')
+  },
+  {
+    path: '*',
+    component: Home
   }
 ]
 
