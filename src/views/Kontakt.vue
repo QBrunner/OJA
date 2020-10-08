@@ -9,7 +9,7 @@
 					{{ text }}
 				</p>
 			</div>
-			<div class="row no gutters">
+			<!--<div class="row no gutters">
 				<div class="col-12 col-md-6">
 					<p>Name</p>
 					<input>
@@ -18,15 +18,15 @@
 					<p>Email</p>
 					<input>
 				</div>
-			</div>
+			</div>-->
 			<div class="row no gutters">
 				<div class="col-12">
-					<p>Nachricht</p>
-					<textarea></textarea>
+					<p>Nachricht:</p>
+					<textarea v-model="message"></textarea>
 				</div>
 			</div>
 		</div>
-		<div class="row no-gutters">
+		<div class="row no-gutters" @click="sendMail">
 			<div class="button">abschicken</div>
 		</div>
 	</div>
@@ -39,29 +39,25 @@
 			return {
 				data: {
 					texts: [
-						`Immer unter dem Motto: „Don’t hesitate to say hello!“.`,
-						`Falls ihr Fragen, Anliegen, Anregungen, Wünsche habt,
-						dann könnt ihr uns jederzeit via Facebook und Instagram eine Nachricht
-						zukommen lassen.`,
-						`Ansonsten besteht die Möglichkeit unseren Jugendsekretär
-						Patrick telefonisch unter +49 (0) 176 20424016, via Mail unter
-						Patrick.Grabanyi@igmetall.de zu kontaktieren. Die Geschäftsstelle
-						der IG Metall Weilheim ist per Mail unter weilheim@igmetall.de oder unter
-						Berücksichtigung der Öffnungszeiten persönlich zu erreichen.`
 					],
 					email: "",
-				}
+				},
+				message: "",
 			}
 		},
 		methods: {
 			stringify: function(){
 				window.console.log(this.data)
+			},
+			sendMail: function() {
+				document.location.href = "mailto:" + this.data.email + "?body=" + encodeURIComponent(this.message)
+				/*document.location.href = "mailto:chrisgreg23@googlemail.com?subject="
+        + encodeURIComponent(subject)
+        + "&body=" + encodeURIComponent(yourMessage);*/
 			}
 		},
 		created(){
-			//let data = JSON.parse(require('@/assets/Content/Kontakt/kontakt.json'))
-			//this.text = data.text
-			//this.email = data.email
+			this.data = require('@/assets/Content/Kontakt/kontakt.json')
 		}
 	}
 </script>

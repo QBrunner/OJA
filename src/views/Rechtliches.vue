@@ -11,11 +11,11 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="createButton col-6" @click="createJson">
-					Json generieren
-				</div>
 				<div class="createButton col-6" @click="createSection">
 					Section hinzufügen
+				</div>
+				<div class="createButton col-6" @click="createJson">
+					Json generieren
 				</div>
 			</div>
 			<textarea id="finishedJson"></textarea>

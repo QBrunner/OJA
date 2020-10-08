@@ -4,8 +4,8 @@
 			<h1 class="podcastHeading">{{ data.title }}</h1>
 		</div>
 		<div class="podcastDescription">
-			<p>
-				{{ data.description }}
+			<p v-for="(description, index) in data.descriptions" :key="'description-' + index">
+				{{ description }}
 			</p>
 		</div>
 		<div class="podcastAudioContainer">
@@ -27,7 +27,7 @@
 				data: {
 					title: "",
 					link: "",
-					description: ``,
+					descriptions: [],
 					audios: []
 				}
 			}

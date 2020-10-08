@@ -81,6 +81,11 @@ const routes = [
     component: () => import('../views/PodcastsEditor.vue')
   },
   {
+    path: '/editor-kontakt',
+    name: 'editor-kontakt',
+    component: () => import('../views/KontaktEditor.vue')
+  },
+  {
     path: '*',
     component: Home
   }

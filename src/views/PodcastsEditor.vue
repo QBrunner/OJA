@@ -35,6 +35,9 @@
 					<a class="switch center" @click="deleteSection(index)">Section Löschen</a>
 					<a class="switch right" @click="moveUp(index)">&#62;</a>
 				</div>
+        <div class="createButton col-6" @click="$router.push({ name: 'editor-podcast', params: { name: podcast.link }}).catch(err => {})">
+					Link folgen
+				</div>
       </div>
 			<div class="createButton col-6" @click="createSection">
 				Section hinzufügen
@@ -145,7 +148,6 @@
         arr.push(obj)
       }
       this.existingRoutes = arr
-      console.log(this.existingRoutes)
 		}
 	}
 </script>
