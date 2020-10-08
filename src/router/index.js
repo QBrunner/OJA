@@ -71,6 +71,16 @@ const routes = [
     component: () => import('../views/Rechtliches.vue')
   },
   {
+    path: '/editor-podcasts/:name',
+    name: 'editor-podcast',
+    component: () => import('../views/PodcastEditor.vue')
+  },
+  {
+    path: '/editor-podcasts',
+    name: 'editor-podcasts',
+    component: () => import('../views/PodcastsEditor.vue')
+  },
+  {
     path: '*',
     component: Home
   }

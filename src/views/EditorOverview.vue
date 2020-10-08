@@ -2,6 +2,7 @@
   <div class="editorOverview">
     <div class="editorWrapper">
       <h2>Navigation:</h2>
+      <a class="editorLink" @click="$router.push({ name: 'editor-podcasts' }).catch(err => {})">Podcasts</a>
     </div>
     <div class="editorWrapper">
       <h2>Footer:</h2>
