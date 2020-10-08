@@ -80,7 +80,7 @@
 				this.data.texts.splice(index, 1)
 			},
 			createSection: function(){
-				let elem = {title: "", text: "", link: "",}
+				let elem = ""
 				this.data.texts.push(elem)
 			},
 			createJson: function(){
