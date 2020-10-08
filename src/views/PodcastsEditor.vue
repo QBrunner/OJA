@@ -45,13 +45,12 @@
 			<div class="createButton col-6" @click="createJson">
 				Json generieren
 			</div>
+      <div class="col-12">
+        <p v-for="(route, index) in existingRoutes" :key="'existingRoutes-' + index">
+          {{ route.title }} --- {{ route.link }}
+        </p>
+      </div>
     </div>
-
-    <!--
-		<div @click="stringify()">
-			stringify
-		</div>
-		<input type="text" value="" id="stringify">-->
   </div>
 </template>
 
@@ -66,7 +65,8 @@
           podcasts: [
             {title: '', text: ``, link: ''}
           ]
-        }
+        },
+        existingRoutes: [],
 			}
 		},
 		methods: {
@@ -138,6 +138,14 @@
 		},
     created(){
 			this.data = require('@/assets/Content/Podcasts/podcasts.json')
+      let imported = require('@/assets/Content/Podcasts/Podcast/podcast.json')
+      let arr = []
+      for(let i = 0; i != imported.length; ++i){
+        let obj = {link: imported[i].link, title: imported[i].title}
+        arr.push(obj)
+      }
+      this.existingRoutes = arr
+      console.log(this.existingRoutes)
 		}
 	}
 </script>
