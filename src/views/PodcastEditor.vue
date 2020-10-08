@@ -78,7 +78,7 @@
 				let arr = []
 				arr.push(this.data)
 				let text = JSON.stringify(arr)
-				window.console.log(text)
+				//window.console.log(text)
 				let input = document.getElementById('stringify')
 				input.value = text
 				input.select()
@@ -90,7 +90,7 @@
 			let obj = imported.find(o => o.link === this.$route.params.name)
 			if(obj){
 				this.data = obj
-				console.log('found obj')
+				//console.log('found obj')
 			}
 			else{
 				this.data.link = this.$route.params.name
@@ -101,9 +101,9 @@
 				true,
 				/^.*\.mp3$/
 			)
-			console.log(audioFiles.keys())
+			//console.log(audioFiles.keys())
 			this.files = audioFiles.keys()
-			console.log(this.data)
+			//console.log(this.data)
 		}
 	}
 </script>
