@@ -86,6 +86,16 @@ const routes = [
     component: () => import('../views/KontaktEditor.vue')
   },
   {
+    path: '/editor-news',
+    name: 'editor-news',
+    component: () => import('../views/NewsEditor.vue')
+  },
+  {
+    path: '/editor-gallery/:name',
+    name: 'editor-gallery',
+    component: () => import('../views/GalleryEditor.vue')
+  },
+  {
     path: '*',
     component: Home
   }

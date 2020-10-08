@@ -22,13 +22,13 @@
     <div class="podcastsEditorContainer row">
       <div class="col podcastsEditorOverview" v-for="(podcast, index) in data.podcasts" :key="'podcast-' + index">
 				<div class="col-12">
-					<input  class="col-12 heading" v-model="data.podcasts[index].title"/>
+					<input placeholder="Title" class="col-12 heading" v-model="data.podcasts[index].title"/>
 				</div>
 				<div class="col-12">
-					<textarea class="col-12" v-model="data.podcasts[index].text"></textarea>
+					<textarea placeholder="Beschreibung" class="col-12" v-model="data.podcasts[index].text"></textarea>
 				</div>
 				<div class="col-12">
-					<input  class="col-12 heading" v-model="data.podcasts[index].link"/>
+					<input placeholder="link" class="col-12 heading" v-model="data.podcasts[index].link"/>
 				</div>
 				<div class="switches">
 					<a class="switch" @click="moveDown(index)">&#60;</a>

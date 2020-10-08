@@ -37,12 +37,29 @@
 				lastId: '',
 				closing: false,
         data: {
+          title: "",
           texts: [
+            `Ende des Jahres 2019 hat die AfD in Frankfurt am Main vom dort ansässigen Bürgermeister gefordert,
+            das Schild der Partnerinitiative der IG Metall namens ‚Respekt! – Kein Platz für Rassismus‘ abzuhängen,
+            da dieses gegen das Neutralitäts- und Sachgebot verstoße. Darüber hinaus ging aus der Shell-Jugendstudie
+            von 2019 hervor, dass junge Menschen vermehrt politisch verdrossen sind.`,
+            `Für uns eine Aufforderung zum Handeln, für uns ein Affront gegen Menschlichkeit,
+            Liebe und Frieden – wir baten beim Weilheimer Rathaus um Unterstützung und
+            forderten Bürgermeister und Stadtrat zum Aktionismus auf. Was wir wollten?
+            Wir wollten, dass die Stadt Weilheim in Oberbayern Gesicht zeigt, sich gegen
+            Rassismus, Diskriminierung und Intoleranz einsetzt und mit Anerkennung der
+            Partnerinitiative ein Signal an andere Städte und Gemeinden sendet.`,
+            `Die dazu veröffentlichten Zeitungsartikel sollen Euch zeigen, mit wie viel
+            Engagement und Motivation wir uns für eine friedlichere Welt einsetzen.`,
+            `Bezüglich unserer Forderung hatten wir großen Erfolg, aber seht selbst!`,
+            `An dieser Stelle möchte wir uns nochmals bei den Mitarbeiterinnen und Mitarbeitern,
+            dem Team der IG Metall Weilheim, beim Ortvorstandsmitglied Walter ‚Wacky‘ Hain,
+            allen Unterstützerinnen und Unterstützern, beim Stadtrat und dem Bürgermeister
+            Markus Loth der Stadt Weilheim in Oberbayern bedanken. Es ist uns ein Fest –
+            vielen lieben Dank - weiterhin für eine bessere, gerechte und friedliche Welt!`,
           ],
-          images: [],
-          link: ""
+          images: ['1_Zeitungsartikel.jpg', '2_Zeitungsartikel.jpg', '3_Übergabe.jpg'],
         },
-        imageFiles: []
 			}
 		},
 		methods: {
@@ -71,25 +88,6 @@
 				}
 				document.getElementById('Modal-' + this.lastId).classList.toggle('galleryNameImage-ContainerInner-Modal')
 			}
-		},
-    created(){
-			let imported = require('@/assets/Content/News/NewsSubpage/subpages.json')
-			let obj = imported.find(o => o.link === this.$route.params.name)
-			if(obj){
-				this.data = obj
-				//console.log('found obj')
-			}
-			else{
-				this.data.link = this.$route.params.name
-			}
-			let imageFiles = require.context(
-				'@/assets/Images',
-				true,
-				/^.*\.*$/
-			)
-			//console.log(imageFiles.keys())
-			this.files = imageFiles.keys()
-			//console.log(this.data)
 		}
 	}
 </script>

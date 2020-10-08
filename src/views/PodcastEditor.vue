@@ -18,13 +18,19 @@
 		</div>
 		<div class="podcastAudioContainer">
 			<div class="podcastOverview" v-for="(audio, id) in data.audios" :key="'Audio' + id">
-				<select v-model="data.audios">
+				<!--<select v-model="data.audios">
 					<option v-for="(file, id) in files" :key="'File' + id">{{ file }}</option>
-				</select>
+				</select>-->
 				<!--<audio controls>
 					<source :src="require(`@/assets/Audio/${data.audios[id]}`)" type="audio/mpeg">
 				Your browser does not support the audio element.
 			</audio>-->
+			</div>
+		</div>
+		<div class="podcastAudioContainer row">
+      <textarea class="col-12 jsonContainer" id="finishedJson"></textarea>
+			<div class="createButton col-6" @click="createJson">
+				Json generieren
 			</div>
 		</div>
 	</div>
@@ -74,12 +80,12 @@
 				let elem = ""
 				this.data.descriptions.push(elem)
 			},
-			stringify: function(){
+			createJson: function(){
 				let arr = []
 				arr.push(this.data)
 				let text = JSON.stringify(arr)
 				//window.console.log(text)
-				let input = document.getElementById('stringify')
+				let input = document.getElementById('finishedJson')
 				input.value = text
 				input.select()
 				document.execCommand("copy")
