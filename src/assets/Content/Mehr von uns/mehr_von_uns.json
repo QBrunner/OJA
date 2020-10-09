@@ -1,1 +1,25 @@
-[{"heading":"Beitrittsformular","texts":["Es gibt zahlreiche Gründe für eine Mitgliedschaft bei der IG Metall.\n\t\t\t\t\tGanz einfach: Formular ausdrucken, ausfüllen und deiner IG Metall vor Ort zukommen lassen.","Wir freuen uns, dass du dabei bist - profitiere nun von den Vorteilen einer Mitgliedschaft! "],"pdfSection":[{"downloadText":"Download Deutsch","downloadTitle":"Beitrittsformular deutsch.pdf"},{"downloadText":"Download Englisch","downloadTitle":"Beitrittsformular englisch.pdf"}],"links":[]},{"heading":"Soziale Netzwerke - Facebook und Instagram","texts":["Wir sind jung, wir sind stark, wir sind innovativ –\n\t\t\t\tfolgt unserem Tun und Geschehen auf Facebook und Instagram – bleibt immer informiert, werdet Fan oder Follower!"],"pdfSection":[],"links":[{"linkText":"Facebook","external":true,"link":"https://www.facebook.com/OJAWeilheim/"},{"linkText":"Instagram","external":true,"link":"https://www.instagram.com/igmetalljugendweilheim/"}]}]
+[{
+  "heading": "Beitrittsformular",
+  "texts": ["Es gibt zahlreiche Gründe für eine Mitgliedschaft bei der IG Metall.\n\t\t\t\t\tGanz einfach: Formular ausdrucken, ausfüllen und deiner IG Metall vor Ort zukommen lassen.", "Wir freuen uns, dass du dabei bist - profitiere nun von den Vorteilen einer Mitgliedschaft! "],
+  "pdfSection": [{
+    "downloadText": "Download Deutsch",
+    "downloadTitle": "Beitrittsformular deutsch.pdf"
+  }, {
+    "downloadText": "Download Englisch",
+    "downloadTitle": "Beitrittsformular englisch.pdf"
+  }],
+  "links": []
+}, {
+  "heading": "Soziale Netzwerke - Facebook und Instagram",
+  "texts": ["Wir sind jung, wir sind stark, wir sind innovativ –\n\t\t\t\tfolgt unserem Tun und Geschehen auf Facebook und Instagram – bleibt immer informiert, werdet Fan oder Follower!"],
+  "pdfSection": [],
+  "links": [{
+    "linkText": "Facebook",
+    "external": true,
+    "link": "https://www.facebook.com/OJAWeilheim/"
+  }, {
+    "linkText": "Instagram",
+    "external": true,
+    "link": "https://www.instagram.com/igmetalljugendweilheim/"
+  }]
+}]
