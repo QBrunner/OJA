@@ -1,10 +1,10 @@
 <template>
-	<div class="podcast">
-		<div class="podcastHeadingContainer">
-			<h1 class="podcastHeading">{{ data.title }}</h1>
+	<div class="podcastEditor">
+		<div class="podcastEditorHeadingContainer">
+			<input placeholder="Title" class="podcastEditorHeading" v-model="data.title"/>
 		</div>
-		<div class="podcastDescription">
-			<div class="podcastTextSection" v-for="(description, index) in data.descriptions" :key="'description-' + index">
+		<div class="podcastEditorContainer editorBorder">
+			<div class="editorBorder" v-for="(description, index) in data.descriptions" :key="'description-' + index">
 				<textarea class="col-12" v-model="data.descriptions[index]"></textarea>
 				<div class="switches">
 					<a class="switch" @click="moveTextDown(index)">&#60;</a>
@@ -16,18 +16,25 @@
 				Section hinzufügen
 			</div>
 		</div>
-		<div class="podcastAudioContainer">
-			<div class="podcastOverview" v-for="(audio, id) in data.audios" :key="'Audio' + id">
-				<!--<select v-model="data.audios">
-					<option v-for="(file, id) in files" :key="'File' + id">{{ file }}</option>
-				</select>-->
-				<!--<audio controls>
-					<source :src="require(`@/assets/Audio/${data.audios[id]}`)" type="audio/mpeg">
-				Your browser does not support the audio element.
-			</audio>-->
+		<div class="podcastEditorContainer editorBorder">
+			<div class="podcastOverview editorBorder" v-for="(audio, id) in data.audios" :key="'Audio' + id">
+				<select class="newsEditorField" v-model="selections[id]" v-on:change="changeAudio(id)">
+					<option disabled value="">Please select one</option>
+					<option v-for="(file, fileId) in audioFiles" :key="'podcastEditorOption-' + fileId">
+						{{ file }}
+					</option>
+				</select>
+				<div class="switches">
+					<a class="switch" @click="moveAudioDown(id)">&#60;</a>
+					<a class="switch center" @click="deleteAudioSection(id)">Section Löschen</a>
+					<a class="switch right" @click="moveAudioUp(id)">&#62;</a>
+				</div>
+			</div>
+			<div class="createButton col-6" @click="createAudioSection">
+				Section hinzufügen
 			</div>
 		</div>
-		<div class="podcastAudioContainer row">
+		<div class="podcastEditorContainer editorBorder row">
       <textarea class="col-12 jsonContainer" id="finishedJson"></textarea>
 			<div class="createButton col-6" @click="createJson">
 				Json generieren
@@ -47,7 +54,10 @@
 					descriptions: [],
 					audios: []
 				},
-				files: []
+				files: [],
+				selections: [],
+				imported: [],
+				alreadyExists: false
 			}
 		},
 		methods: {
@@ -80,22 +90,79 @@
 				let elem = ""
 				this.data.descriptions.push(elem)
 			},
+			moveAudioUp: function(index){
+				if(index < this.data.audios.length - 1){
+					let arr = this.data.audios.slice(0)
+					arr[index + 1] = arr[index]
+					arr[index] = this.data.audios[index + 1]
+					this.data.audios = []
+					arr.forEach( elem => {
+						this.data.audios.push(elem)
+					})
+					let arrSelection = this.selections.slice(0)
+					arrSelection[index + 1] = arrSelection[index]
+					arrSelection[index] = this.selections[index + 1]
+					this.selections = []
+					arrSelection.forEach( elem => {
+						this.selections.push(elem)
+					})
+				}
+			},
+			moveAudioDown: function(index){
+				if(index > 0){
+					let arr = this.data.audios.slice(0)
+					arr[index - 1] = arr[index]
+					arr[index] = this.data.audios[index - 1]
+					this.data.audios = []
+					arr.forEach( elem => {
+						this.data.audios.push(elem)
+					})
+					let arrSelection = this.selections.slice(0)
+					arrSelection[index - 1] = arrSelection[index]
+					arrSelection[index] = this.selections[index - 1]
+					this.selections = []
+					arrSelection.forEach( elem => {
+						this.selections.push(elem)
+					})
+				}
+			},
+			deleteAudioSection: function(index){
+				this.data.audios.splice(index, 1)
+				this.selections.splice(index, 1)
+			},
+			createAudioSection: function(){
+				this.data.audios.push("")
+				this.selections.push("")
+			},
+			changeAudio: function(id){
+				this.data.audios[id] = this.selections[id]
+			},
 			createJson: function(){
-				let arr = []
-				arr.push(this.data)
-				let text = JSON.stringify(arr)
-				//window.console.log(text)
-				let input = document.getElementById('finishedJson')
-				input.value = text
-				input.select()
+				let textarea = document.getElementById('finishedJson')
+				if(this.alreadyExists){
+					let index = 0;
+					for(let i = 0; i != this.imported.length; i++){
+						if(this.imported[i].link === this.data.link){
+							index = i
+						}
+					}
+					this.imported[index] = this.data
+				}
+				else {
+					this.imported.push(this.data)
+				}
+				let data = JSON.stringify(this.imported)
+				textarea.value = data
+				textarea.select()
 				document.execCommand("copy")
 			}
 		},
 		created(){
-			let imported = require('@/assets/Content/Podcasts/Podcast/podcast.json')
-			let obj = imported.find(o => o.link === this.$route.params.name)
+			this.imported = require('@/assets/Content/Podcasts/Podcast/podcast.json')
+			let obj = this.imported.find(o => o.link === this.$route.params.name)
 			if(obj){
 				this.data = obj
+				this.alreadyExists = true
 				//console.log('found obj')
 			}
 			else{
@@ -105,63 +172,45 @@
 			let audioFiles = require.context(
 				'@/assets/Audio',
 				true,
-				/^.*\.mp3$/
+				/^.*\.*$/
 			)
-			//console.log(audioFiles.keys())
-			this.files = audioFiles.keys()
-			//console.log(this.data)
+			this.audioFiles = audioFiles.keys()
+			for(let i = 0; i != this.audioFiles.length; i++){
+				this.audioFiles[i] = this.audioFiles[i].substring(2)
+			}
+
+			this.selections = []
+			for(let i = 0; i != this.data.audios.length; ++i){
+				this.selections.push(this.data.audios[i])
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	.podcast{
+	.podcastEditor{
 		min-height: calc(100vh - 174px);
-		.podcastHeadingContainer{
-			margin-left: 10px;
-			margin-right: 10px;
-			.podcastHeading{
-				font-size: 65px;
+		margin: 0px 30px;
+		.podcastEditorHeadingContainer{
+			width: 70%;
+			margin: 130px auto 30px auto;
+			.podcastEditorHeading{
+				width: 100%;
+				font-size: 3em;
 			}
 		}
-		.podcastDescription,
-		.podcastAudioContainer{
-			margin-left: 65px;
-			margin-top: 30px;
-			margin-right: 15px;
-			padding: 20px 10px;
-			border: 2px solid black;
-			border-radius: 7px;
-			.podcastTextSection{
-				padding: 20px 10px;
-				border: 2px solid black;
-				border-radius: 7px;
-			}
-			.podcastOverview{
-				position: relative;
-				transition: 0.5s ease;
-				padding: 20px 10px;
-				border: 2px solid black;
-				border-radius: 7px;
-				box-shadow: 5px 10px 20px black;
-				margin: 20px 0px;
-				audio{
-					width: 100%;
-					background: black;
-				}
+		.podcastEditorContainer{
+			width: 70%;
+			margin: 50px auto;
+			.podcastEditorImageContainer{
+				margin: 50px 0px;
 			}
 		}
-		.createButton{
-			position: relative;
-			transition: 0.5s ease;
+		.editorBorder{
 			padding: 20px 10px;
 			border: 2px solid black;
 			border-radius: 7px;
 			box-shadow: 5px 10px 20px black;
-			margin: 10px auto 0px auto;
-			cursor: pointer;
-			text-align: center;
-			display: block;
 		}
 		.switches{
 			width: 100%;
@@ -181,36 +230,27 @@
 				transform: translate(-50%, 0%)
 			}
 		}
+		.createButton{
+			position: relative;
+			transition: 0.5s ease;
+			padding: 20px 10px;
+			border: 2px solid black;
+			border-radius: 7px;
+			box-shadow: 5px 10px 20px black;
+			margin: 40px auto;
+			cursor: pointer;
+			text-align: center;
+			display: block;
+		}
+		.createButton:hover{
+			scale: 1.02;
+		}
 	}
 	@media only screen and (min-width: 768px) {
-		.podcast{
+		.root{
 			min-height: calc(100vh - 194px);
-			.podcastHeadingContainer{
-				margin-left: 80px;
-				margin-right: 90px;
-			}
-			.podcastDescription,
-			.podcastAudioContainer{
-				margin-left: 80px;
-				margin-top: 30px;
-				margin-right: 90px;
-			}
 		}
 	}
 	@media only screen and (min-width: 992px) {
-		.podcast{
-			.podcastHeadingContainer{
-				.podcastHeading{
-					font-size: 9em;
-				}
-			}
-			.podcastDescription,
-			.podcastAudioContainer{
-				margin-left: 20%;
-				margin-top: 30px;
-				margin-right: 12%;
-				font-size: 1.5em;
-			}
-		}
 	}
 </style>
