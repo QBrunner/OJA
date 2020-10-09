@@ -3,9 +3,6 @@
 		<div class="newsEditorSectionWrapper">
 			<div class="newsEditorImage-Container" v-for="(element, id) in data.elements" :key="'newsEditor-' + id">
 				<div>
-					<p>
-						Verwendetes Bild: {{ selections[id] }}
-					</p>
 					<select class="newsEditorField" v-model="selections[id]" v-on:change="changeImage(id)">
 						<option disabled value="">Please select one</option>
 						<option v-for="(file, fileId) in imageFiles" :key="'newsEditorOption-' + fileId">
