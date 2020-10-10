@@ -11,6 +11,7 @@
 				</div>
 			</div>
 			<div class="row">
+				<textarea id="finishedJson"></textarea>
 				<div class="createButton col-6" @click="createSection">
 					Section hinzufügen
 				</div>
@@ -18,7 +19,6 @@
 					Json generieren
 				</div>
 			</div>
-			<textarea id="finishedJson"></textarea>
 		</div>
 	</div>
 </template>

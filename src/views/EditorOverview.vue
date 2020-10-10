@@ -4,6 +4,7 @@
       <h2>Navigation:</h2>
       <a class="editorLink" @click="$router.push({ name: 'editor-news' }).catch(err => {})">News</a>
       <a class="editorLink" @click="$router.push({ name: 'editor-termine' }).catch(err => {})">Termine</a>
+      <a class="editorLink" @click="$router.push({ name: 'editor-mehrvonuns' }).catch(err => {})">Mehr von uns</a>
       <a class="editorLink" @click="$router.push({ name: 'editor-podcasts' }).catch(err => {})">Podcasts</a>
       <a class="editorLink" @click="$router.push({ name: 'editor-kontakt' }).catch(err => {})">Kontakt</a>
     </div>

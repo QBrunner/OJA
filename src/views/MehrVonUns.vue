@@ -9,7 +9,7 @@
 				<div class="col pdfDownload" v-for="(pdf, id) in section.pdfSection" :key="'pdf-' + id" @click="downloadDocument(pdf.downloadTitle)">{{ pdf.downloadText }}</div>
 			</div>
 			<div class="pdfSection row no-gutters">
-				<a class="col pdfDownload" v-for="(link, id) in section.links" :key="'link-' + id" :href="link.link" target="_blank">{{ link.linkText }}</a>
+				<a class="col pdfDownload" v-for="(link, id) in section.links" :key="'link-' + id" :href="link.link" target="_blank">{{ link.linkText }} &#x1f517;</a>
 			</div>
 		</div>
 		<!--<div @click="stringify()">

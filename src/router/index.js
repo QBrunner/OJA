@@ -43,7 +43,7 @@ const routes = [
   {
     path: '/mehrvonuns',
     name: 'mehrvonuns',
-    component: () => import('../views/Mehr von uns.vue')
+    component: () => import('../views/MehrVonUns.vue')
   },
   {
 		path: '/kontakt',
@@ -108,7 +108,12 @@ const routes = [
   {
     path: '*',
     component: Home
-  }
+  },
+  {
+    path: '/editor-mehrvonuns',
+    name: 'editor-mehrvonuns',
+    component: () => import('../views/MehrVonUnsEditor.vue')
+  },
 ]
 
 const router = new VueRouter({
