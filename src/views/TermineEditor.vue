@@ -22,23 +22,44 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="oja-button col-6" @click="showAllOJA">
-					Alle OJA-Treffen anzeigen
-				</div>
-				<div class="oja-button col-6" @click="showAll">
-					Alle Termine anzeigen
+			<div>
+				<div class="row">
+					<div class="createButton col-6" @click="showAllOJA">
+						Alle OJA-Treffen anzeigen
+					</div>
+					<div class="createButton col-6" @click="showAll">
+						Alle Termine anzeigen
+					</div>
+					<div class="createButton col-12" @click="newEvent">
+						Neues Event hinzufügen
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="eventWrapper">
-			<div class="event" v-for="(event, index) in shownEvents" :key="'event-' + index"
-			@click="$router.push({ name: 'termineName', params: { name: event.link }}).catch(err => {})">
-				<img class="eventArrow" src="@/assets/Icons/Pfeil_nach_rechts.svg">
+			<div class="editor-event" v-for="(event, index) in shownEvents" :key="'event-' + index">
 				<div class="eventSection">
 					<h2 class="eventHeading">{{event.day}}. {{months[event.month]}} {{event.year}}</h2>
-					<h3 class="eventTitle">{{event.title}}</h3>
+					<input placeholder="Beschreibung" class="termine-editor-input" v-model="event.title"/>
+					<input placeholder="Link" class="termine-editor-input" v-model="event.link"/>
+					<span>OJA Treffen? </span>
+					<input type="checkbox" v-model="event.isOJA">
+					<div class="row buttonRow">
+						<div class="createButton col-6" @click="deleteEvent(event.link)">
+							Termin Löschen
+						</div>
+						<div class="createButton col-6"
+						@click="$router.push({ name: 'editor-termineName', params: { name: event.link }}).catch(err => {})">
+							Link Folgen
+						</div>
+					</div>
 				</div>
+			</div>
+		</div>
+		<div class="eventWrapper">
+      <textarea class="col-12 jsonContainer" id="finishedJson"></textarea>
+			<div class="createButton col-6" @click="createJson">
+				Json generieren
 			</div>
 		</div>
 	</div>
@@ -60,6 +81,8 @@
 				events: [],
 				currentEvents: [],
 				shownEvents: [],
+				allVisible: false,
+				ojaVisible: false,
 			}
 		},
 		methods: {
@@ -173,7 +196,6 @@
 							this.shownEvents.push(this.events[i])
 						}
 				}
-				window.console.log(this.daySelected.getFullYear())
 			},
 			showAllOJA: function(){
 				let meetings = []
@@ -186,6 +208,8 @@
 				meetings.sort((a, b) => parseFloat(a.month) - parseFloat(b.month));
 				meetings.sort((a, b) => parseFloat(a.year) - parseFloat(b.year));
 				this.shownEvents = meetings;
+				this.allVisible = false
+				this.ojaVisible = true
 			},
 			showAll: function() {
 				let meetings = this.events
@@ -196,7 +220,37 @@
 				this.allVisible = true
 				this.ojaVisible = false
 			},
+			deleteEvent: function(link){
+				let meetings = this.events
+				for(let i = 0; i != meetings.length; ++i){
+					if(meetings[i].link === link){
+						meetings.splice(i, 1)
+						i--;
+					}
+				}
+				this.events = meetings
+				this.calculateMonths()
+				if(this.allVisible){
+					this.showAll()
+				}
+				else if (this.ojaVisible){
+					this.showAllOJA()
+				}
+				else{
+					this.select(this.daySelected.getDate(), this.daySelected.getMonth())
+				}
+			},
+			newEvent: function(){
+				let elem = { year: 0, month: 0, day: 0, title: "", isOJA: false, link: "" }
+				elem.year = this.daySelected.getFullYear()
+				elem.month = this.daySelected.getMonth()
+				elem.day = this.daySelected.getDate()
+				this.events.unshift(elem)
+				this.calculateMonths()
+				this.select(elem.day, elem.month)
+			},
 			select: function(day, curMonth){
+				console.log(day, curMonth)
 				let year = this.date.getFullYear()
 				let month = this.date.getMonth()
 				if(month == 0){
@@ -211,6 +265,15 @@
 				}
 				this.daySelected = new Date(year, curMonth, day)
 				this.calculateShownEvents(day)
+				this.allVisible = false
+				this.ojaVisible = false
+			},
+			createJson: function(){
+				let textarea = document.getElementById('finishedJson')
+				let data = JSON.stringify(this.events)
+				textarea.value = data
+				textarea.select()
+				document.execCommand("copy")
 			}
 		},
 		created() {
@@ -358,7 +421,7 @@
 			.eventWrapper{
 				width: 280px;
 				margin: 40px auto 0px auto;
-				.event{
+				.editor-event{
 					position: relative;
 					transition: 0.5s ease;
 					padding: 20px 10px;
@@ -370,7 +433,7 @@
 					animation-duration: 1s;
 					cursor: pointer;
 					.eventSection{
-						width: 85%;
+						width: 100%;
 						display: inline-block;
 						.eventHeading{
 							font-size: 5.5vw;
@@ -389,17 +452,48 @@
 						transition: 0.5s ease;
 					}
 				}
-				.event:hover{
-					scale: 1.02;
-					.eventArrow{
-						transition: 0.5s $easeInOutBack;
-						transform: translate(5px, -50%);
-					}
-				}
 				@keyframes contactFadeIn {
 					0%{ opacity: 0;}
 					100%{ opacity: 1;}
 				}
+			}
+			.switches{
+				width: 100%;
+				position: relative;
+				height: 30px;
+				margin-bottom: 50px;
+				.switch{
+					position: absolute;
+					font-size: 40px;
+					cursor: pointer;
+				}
+				.right{
+					right: 0px;
+				}
+				.center{
+					left: 50%;
+					transform: translate(-50%, 0%)
+				}
+			}
+			.createButton{
+				position: relative;
+				transition: 0.5s ease;
+				padding: 20px 10px;
+				border: 2px solid black;
+				border-radius: 7px;
+				box-shadow: 5px 10px 20px black;
+				margin: 5px auto 40px auto;
+				cursor: pointer;
+				text-align: center;
+				display: block;
+			}
+			.termine-editor-input {
+				display: block;
+				margin: 10px 0px;
+			}
+			.buttonRow {
+				width: 95%;
+				margin: auto;
 			}
 	}
 	@media only screen and (min-width: 460px){
@@ -427,7 +521,7 @@
 			.eventWrapper{
 				width: 350px;
 				margin: 40px auto 0px auto;
-				.event{
+				.editor-event{
 					.eventIndex{
 						h3{
 							position: absolute;

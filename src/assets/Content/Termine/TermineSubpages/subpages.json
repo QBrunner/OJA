@@ -1,0 +1,21 @@
+[{
+  "title": "Aktion Respekt",
+  "texts": ["Ende des Jahres 2019 hat die AfD in Frankfurt am Main vom dort ansässigen Bürgermeister gefordert,\n            das Schild der Partnerinitiative der IG Metall namens ‚Respekt! – Kein Platz für Rassismus‘ abzuhängen,\n            da dieses gegen das Neutralitäts- und Sachgebot verstoße. Darüber hinaus ging aus der Shell-Jugendstudie\n            von 2019 hervor, dass junge Menschen vermehrt politisch verdrossen sind.", "Für uns eine Aufforderung zum Handeln, für uns ein Affront gegen Menschlichkeit,\n            Liebe und Frieden – wir baten beim Weilheimer Rathaus um Unterstützung und\n            forderten Bürgermeister und Stadtrat zum Aktionismus auf. Was wir wollten?\n            Wir wollten, dass die Stadt Weilheim in Oberbayern Gesicht zeigt, sich gegen\n            Rassismus, Diskriminierung und Intoleranz einsetzt und mit Anerkennung der\n            Partnerinitiative ein Signal an andere Städte und Gemeinden sendet.", "Die dazu veröffentlichten Zeitungsartikel sollen Euch zeigen, mit wie viel\n            Engagement und Motivation wir uns für eine friedlichere Welt einsetzen.", "Bezüglich unserer Forderung hatten wir großen Erfolg, aber seht selbst!", "An dieser Stelle möchte wir uns nochmals bei den Mitarbeiterinnen und Mitarbeitern,\n            dem Team der IG Metall Weilheim, beim Ortvorstandsmitglied Walter ‚Wacky‘ Hain,\n            allen Unterstützerinnen und Unterstützern, beim Stadtrat und dem Bürgermeister\n            Markus Loth der Stadt Weilheim in Oberbayern bedanken. Es ist uns ein Fest –\n            vielen lieben Dank - weiterhin für eine bessere, gerechte und friedliche Welt!"],
+  "images": ["1_Zeitungsartikel.jpg", "2_Zeitungsartikel.jpg", "3_Übergabe.jpg"],
+  "link": "respekt"
+}, {
+  "title": "OJA Treffen",
+  "texts": ["Ende des Jahres 2019 hat die AfD in Frankfurt am Main vom dort ansässigen Bürgermeister gefordert,\n            das Schild der Partnerinitiative der IG Metall namens ‚Respekt! – Kein Platz für Rassismus‘ abzuhängen,\n            da dieses gegen das Neutralitäts- und Sachgebot verstoße. Darüber hinaus ging aus der Shell-Jugendstudie\n            von 2019 hervor, dass junge Menschen vermehrt politisch verdrossen sind.", "Für uns eine Aufforderung zum Handeln, für uns ein Affront gegen Menschlichkeit,\n            Liebe und Frieden – wir baten beim Weilheimer Rathaus um Unterstützung und\n            forderten Bürgermeister und Stadtrat zum Aktionismus auf. Was wir wollten?\n            Wir wollten, dass die Stadt Weilheim in Oberbayern Gesicht zeigt, sich gegen\n            Rassismus, Diskriminierung und Intoleranz einsetzt und mit Anerkennung der\n            Partnerinitiative ein Signal an andere Städte und Gemeinden sendet.", "Die dazu veröffentlichten Zeitungsartikel sollen Euch zeigen, mit wie viel\n            Engagement und Motivation wir uns für eine friedlichere Welt einsetzen.", "Bezüglich unserer Forderung hatten wir großen Erfolg, aber seht selbst!", "An dieser Stelle möchte wir uns nochmals bei den Mitarbeiterinnen und Mitarbeitern,\n            dem Team der IG Metall Weilheim, beim Ortvorstandsmitglied Walter ‚Wacky‘ Hain,\n            allen Unterstützerinnen und Unterstützern, beim Stadtrat und dem Bürgermeister\n            Markus Loth der Stadt Weilheim in Oberbayern bedanken. Es ist uns ein Fest –\n            vielen lieben Dank - weiterhin für eine bessere, gerechte und friedliche Welt!"],
+  "images": ["1_Zeitungsartikel.jpg", "2_Zeitungsartikel.jpg", "3_Übergabe.jpg"],
+  "link": "oja-treffen"
+}, {
+  "title": "Random Title",
+  "texts": ["1234"],
+  "images": ["3_Übergabe.jpg"],
+  "link": "azubi-bowling"
+}, {
+  "title": "Testing",
+  "texts": ["asdfasdfsadf", "asdfasdfasdf"],
+  "images": [],
+  "link": "TestLink1"
+}]

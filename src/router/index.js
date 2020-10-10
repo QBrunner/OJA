@@ -28,7 +28,7 @@ const routes = [
   {
     path: '/termine/:name',
     name: 'termineName',
-    component: () => import('../views/Gallery.vue')
+    component: () => import('../views/Termin.vue')
   },
   {
     path: '/podcasts',
@@ -94,6 +94,16 @@ const routes = [
     path: '/editor-gallery/:name',
     name: 'editor-gallery',
     component: () => import('../views/GalleryEditor.vue')
+  },
+  {
+    path: '/editor-termine',
+    name: 'editor-termine',
+    component: () => import('../views/TermineEditor.vue')
+  },
+  {
+    path: '/editor-termine/:name',
+    name: 'editor-termineName',
+    component: () => import('../views/TerminEditor.vue')
   },
   {
     path: '*',
