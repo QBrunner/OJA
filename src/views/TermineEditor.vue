@@ -250,7 +250,6 @@
 				this.select(elem.day, elem.month)
 			},
 			select: function(day, curMonth){
-				console.log(day, curMonth)
 				let year = this.date.getFullYear()
 				let month = this.date.getMonth()
 				if(month == 0){

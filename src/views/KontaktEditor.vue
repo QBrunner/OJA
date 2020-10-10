@@ -30,6 +30,7 @@
 				</div>
 			</div>
 			<div class="row">
+				<textarea class="col-12" id="finishedJson"></textarea>
 				<div class="createButton col-6" @click="createSection">
 					Section hinzufügen
 				</div>
@@ -84,8 +85,11 @@
 				this.data.texts.push(elem)
 			},
 			createJson: function(){
+				let textarea = document.getElementById('finishedJson')
 				let data = JSON.stringify(this.data)
-				window.console.log(data)
+				textarea.value = data
+				textarea.select()
+				document.execCommand("copy")
 			}
 		},
 		created(){
