@@ -24,8 +24,20 @@
 			</div>
 			<div>
 				<div class="row">
-					<div class="createButton col-6" @click="showAllOJA">
+					<div class="createButton col-6" @click="showEvents(0)">
 						Alle OJA-Treffen anzeigen
+					</div>
+					<div class="createButton col-6" @click="showEvents(1)">
+						Alle BJA-Treffen
+					</div>
+					<div class="createButton col-6" @click="showEvents(2)">
+						Alle Wochenendseminare anzeigen
+					</div>
+					<div class="createButton col-6" @click="showEvents(3)">
+						Alle Bildungsevents anzeigen
+					</div>
+					<div class="createButton col-6" @click="showEvents(4)">
+						Alle Events anzeigen
 					</div>
 					<div class="createButton col-6" @click="showAll">
 						Alle Termine anzeigen
@@ -42,8 +54,11 @@
 					<h2 class="eventHeading">{{event.day}}. {{months[event.month]}} {{event.year}}</h2>
 					<input placeholder="Beschreibung" class="termine-editor-input" v-model="event.title"/>
 					<input placeholder="Link" class="termine-editor-input" v-model="event.link"/>
-					<span>OJA Treffen? </span>
-					<input type="checkbox" v-model="event.isOJA">
+					<p>OJA Treffen? <input type="checkbox" v-model="event.isOJA"></p>
+					<p>BJA? <input type="checkbox" v-model="event.isBJA"></p>
+					<p>Wochenendseminar? <input type="checkbox" v-model="event.isWeSeminar"></p>
+					<p>Bildung? <input type="checkbox" v-model="event.isBildung"></p>
+					<p>Event? <input type="checkbox" v-model="event.isEvent"></p>
 					<div class="row buttonRow">
 						<div class="createButton col-6" @click="deleteEvent(event.link)">
 							Termin Löschen
@@ -208,8 +223,53 @@
 				meetings.sort((a, b) => parseFloat(a.month) - parseFloat(b.month));
 				meetings.sort((a, b) => parseFloat(a.year) - parseFloat(b.year));
 				this.shownEvents = meetings;
-				this.allVisible = false
-				this.ojaVisible = true
+			},
+			showEvents: function(type){
+				let meetings = []
+				for(let i = 0; i < this.events.length; i++){
+					if(type === 0){
+						if(this.events[i].isOJA){
+							meetings.push(this.events[i])
+						}
+					}
+					else if(type === 1){
+						if(this.events[i].isBJA){
+							meetings.push(this.events[i])
+						}
+					}
+					else if(type === 2){
+						if(this.events[i].isWeSeminar){
+							meetings.push(this.events[i])
+						}
+					}
+					else if(type === 3){
+						if(this.events[i].isBildung){
+							meetings.push(this.events[i])
+						}
+					}
+					else if(type === 4){
+						if(this.events[i].isEvent){
+							meetings.push(this.events[i])
+						}
+					}
+				}
+				meetings.sort((a, b) => parseFloat(a.day) - parseFloat(b.day));
+				meetings.sort((a, b) => parseFloat(a.month) - parseFloat(b.month));
+				meetings.sort((a, b) => parseFloat(a.year) - parseFloat(b.year));
+				this.shownEvents = meetings;
+			},
+			/*
+			<p>OJA Treffen? <input type="checkbox" v-model="event.isOJA"></p>
+			<p>BJA? <input type="checkbox" v-model="event.isBJA"></p>
+			<p>Wochenendseminar? <input type="checkbox" v-model="event.isWeSeminar"></p>
+			<p>Bildung? <input type="checkbox" v-model="event.isBildung"></p>
+			<p>Event? <input type="checkbox" v-model="event.isEvent"></p>
+			*/
+			showBoilerCode: function(meetings) {
+				meetings.sort((a, b) => parseFloat(a.day) - parseFloat(b.day));
+				meetings.sort((a, b) => parseFloat(a.month) - parseFloat(b.month));
+				meetings.sort((a, b) => parseFloat(a.year) - parseFloat(b.year));
+				this.shownEvents = meetings;
 			},
 			showAll: function() {
 				let meetings = this.events
@@ -230,7 +290,7 @@
 				}
 				this.events = meetings
 				this.calculateMonths()
-				if(this.allVisible){
+				/*if(this.allVisible){
 					this.showAll()
 				}
 				else if (this.ojaVisible){
@@ -238,10 +298,11 @@
 				}
 				else{
 					this.select(this.daySelected.getDate(), this.daySelected.getMonth())
-				}
+				}*/
+				this.select(this.daySelected.getDate(), this.daySelected.getMonth())
 			},
 			newEvent: function(){
-				let elem = { year: 0, month: 0, day: 0, title: "", isOJA: false, link: "" }
+				let elem = { year: 0, month: 0, day: 0, title: "", isOJA: false, isBJA: false, isWeSeminar: false, isBildung: false, isEvent: false, link: "" }
 				elem.year = this.daySelected.getFullYear()
 				elem.month = this.daySelected.getMonth()
 				elem.day = this.daySelected.getDate()

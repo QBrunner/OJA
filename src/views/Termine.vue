@@ -23,10 +23,22 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="oja-button col-6" @click="showAllOJA">
+				<div class="oja-button col-12 col-md-6" @click="showEvents(0)">
 					Alle OJA-Treffen anzeigen
 				</div>
-				<div class="oja-button col-6" @click="showAll">
+				<div class="oja-button col-12 col-md-6" @click="showEvents(1)">
+					Alle BJA-Treffen
+				</div>
+				<div class="oja-button col-12 col-md-6" @click="showEvents(2)">
+					Alle Wochenendseminare anzeigen
+				</div>
+				<div class="oja-button col-12 col-md-6" @click="showEvents(3)">
+					Alle Bildungsevents anzeigen
+				</div>
+				<div class="oja-button col-12 col-md-6" @click="showEvents(4)">
+					Alle Events anzeigen
+				</div>
+				<div class="oja-button col-12 col-md-6" @click="showAll">
 					Alle Termine anzeigen
 				</div>
 			</div>
@@ -180,6 +192,40 @@
 				for(let i = 0; i < this.events.length; i++){
 					if(this.events[i].isOJA){
 						meetings.push(this.events[i])
+					}
+				}
+				meetings.sort((a, b) => parseFloat(a.day) - parseFloat(b.day));
+				meetings.sort((a, b) => parseFloat(a.month) - parseFloat(b.month));
+				meetings.sort((a, b) => parseFloat(a.year) - parseFloat(b.year));
+				this.shownEvents = meetings;
+			},
+			showEvents: function(type){
+				let meetings = []
+				for(let i = 0; i < this.events.length; i++){
+					if(type === 0){
+						if(this.events[i].isOJA){
+							meetings.push(this.events[i])
+						}
+					}
+					else if(type === 1){
+						if(this.events[i].isBJA){
+							meetings.push(this.events[i])
+						}
+					}
+					else if(type === 2){
+						if(this.events[i].isWeSeminar){
+							meetings.push(this.events[i])
+						}
+					}
+					else if(type === 3){
+						if(this.events[i].isBildung){
+							meetings.push(this.events[i])
+						}
+					}
+					else if(type === 4){
+						if(this.events[i].isEvent){
+							meetings.push(this.events[i])
+						}
 					}
 				}
 				meetings.sort((a, b) => parseFloat(a.day) - parseFloat(b.day));

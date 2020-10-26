@@ -1,15 +1,12 @@
 [{
   "year": 2020,
   "month": 9,
-  "day": 24,
-  "title": "tesfsadf",
+  "day": 26,
+  "title": "OJA-Treffen",
   "isOJA": true,
-  "link": "1234"
-}, {
-  "year": 2020,
-  "month": 9,
-  "day": 10,
-  "title": "Test",
-  "isOJA": false,
-  "link": "TestLink1"
+  "isBJA": false,
+  "isWeSeminar": false,
+  "isBildung": false,
+  "isEvent": false,
+  "link": "oja-treffen26-10-2020"
 }]

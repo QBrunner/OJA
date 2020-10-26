@@ -98,7 +98,7 @@
 			},
 			stringify: function(){
 				let text = JSON.stringify(this.data)
-				window.console.log(text)
+				//window.console.log(text)
 				let input = document.getElementById('stringify')
 				input.value = text
 				input.select()
@@ -113,7 +113,7 @@
 					}
 				}))
 				this.pdfs = pdfs
-				console.log(this.pdfs)
+				//console.log(this.pdfs)
 
 				this.selections = []
 				for(let i = 0; i != this.data.length; ++i){
@@ -121,10 +121,10 @@
 						this.selections.push(this.data[i].pdfSection[j])
 					}
 				}
-				console.log(this.selections)
+				//console.log(this.selections)
 			},
 			changePdf: function(i, j){
-				this.data.[i].pdfSection[j] = this.selections[i * j + j]
+				this.data[i].pdfSection[j] = this.selections[i * j + j]
 			},
 			addText: function(i){
 				this.data[i].texts.push("")
